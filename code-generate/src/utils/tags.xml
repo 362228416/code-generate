@@ -1,0 +1,329 @@
+<?xml version="1.0"?>
+<tags>
+	<!-- jdbcTemplate -->
+	<tag name="bean">
+		<attributes>
+			<id>jdbcTemplate</id>
+			<class>org.springframework.jdbc.core.JdbcTemplate</class>
+		</attributes>
+		<childs>
+			<tag name="property">
+				<attributes>
+					<name>dataSource</name>
+					<ref>dataSource</ref>
+				</attributes>		
+			</tag>
+		</childs>
+	</tag>
+	<!-- dataSource -->
+	<tag name="bean">
+		<attributes>
+			<id>dataSource</id>
+			<class>org.apache.commons.dbcp.BasicDataSource</class>
+			<destroy-method>close</destroy-method>
+		</attributes>
+		<childs>
+			<tag name="property">
+				<attributes>
+					<name>driverClassName</name>
+					<value>org.hsqldb.jdbcDriver</value>
+				</attributes>
+			</tag>
+			<tag name="property">
+				<attributes>
+					<name>url</name>
+					<value>jdbc:hsqldb:mem:all</value>
+				</attributes>
+			</tag>
+			<tag name="property">
+				<attributes>
+					<name>username</name>
+					<value>sa</value>
+				</attributes>
+			</tag>
+			<tag name="property">
+				<attributes>
+					<name>password</name>
+					<value></value>
+				</attributes>
+			</tag>
+			<tag name="property">
+				<attributes>
+					<name>testOnBorrow</name>
+					<value>true</value>
+				</attributes>
+			</tag>
+			<tag name="property">
+				<attributes>
+					<name>testOnReturn</name>
+					<value>true</value>
+				</attributes>
+			</tag>
+			<tag name="property">
+				<attributes>
+					<name>testWhileIdle</name>
+					<value>true</value>
+				</attributes>
+			</tag>
+			<tag name="property">
+				<attributes>
+					<name>timeBetweenEvictionRunsMillis</name>
+					<value>1800000</value>
+				</attributes>
+			</tag>
+			<tag name="property">
+				<attributes>
+					<name>numTestsPerEvictionRun</name>
+					<value>3</value>
+				</attributes>
+			</tag>
+			<tag name="property">
+				<attributes>
+					<name>minEvictableIdleTimeMillis</name>
+					<value>1800000</value>
+				</attributes>
+			</tag>
+		</childs>
+	</tag>
+	<!-- context:spring-configured -->
+	<tag name="context:spring-configured"></tag>
+	<!-- context:property-placeholder -->
+	<tag name="context:property-placeholder">
+		<attributes>
+			<location>classpath*:META-INF/spring/*.properties</location>
+		</attributes>
+	</tag>
+	<!-- context:component-scan -->
+	<tag name="context:component-scan">
+		<attributes>
+			<base-package>*</base-package>
+		</attributes>
+	</tag>
+	<!-- jpatransactionManager -->
+	<tag name="bean">
+		<attributes>
+			<id>jpatransactionManager</id>
+			<class>org.springframework.orm.jpa.JpaTransactionManager</class>
+		</attributes>
+		<childs>
+			<tag name="property">
+				<attributes>
+					<name>entityManagerFactory</name>
+					<ref>entityManagerFactory</ref>
+				</attributes>
+			</tag>
+		</childs>
+	</tag>
+	<!-- dataSourceTransactionManager -->
+	<tag name="bean">
+		<attributes>
+			<id>dataSourceTransactionManager</id>
+			<class>org.springframework.jdbc.datasource.DataSourceTransactionManager</class>
+		</attributes>
+		<childs>
+			<tag name="property">
+				<attributes>
+					<name>dataSource</name>
+					<ref>dataSource</ref>
+				</attributes>
+			</tag>
+		</childs>
+	</tag>
+	<!-- entityManagerFactory -->
+	<tag name="bean">
+		<attributes>
+			<id>entityManagerFactory</id>
+			<class>org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean</class>
+		</attributes>
+		<childs>
+			<tag name="property">
+				<attributes>
+					<name>persistenceUnitName</name>
+					<ref>persistenceUnit</ref>
+				</attributes>
+			</tag>
+			<tag name="property">
+				<attributes>
+					<name>dataSource</name>
+					<ref>dataSource</ref>
+				</attributes>
+			</tag>
+		</childs>
+	</tag>
+	<!-- tx:annotation-driven -->
+	<tag name="tx:annotation-driven">
+		<attributes>
+			<proxy-target-class>false</proxy-target-class>
+			<mode>aspectj</mode>
+			<transaction-manager>transactionManager</transaction-manager>
+		</attributes>
+	</tag>
+	<!-- tx:advice -->
+	<tag name="tx:advice">
+		<attributes>
+			<id>txAdvice</id>
+		</attributes>
+		<childs>
+			<tag name="tx:attributes">
+				<childs>
+					<tag name="tx:method">
+						<attributes>
+							<name>get*</name>
+							<read-only>true</read-only>
+						</attributes>
+					</tag>
+					<tag name="tx:method">
+						<attributes>
+							<name>find*</name>
+							<read-only>true</read-only>
+						</attributes>
+					</tag>
+					<tag name="tx:method">
+						<attributes>
+							<name>*</name>
+						</attributes>
+					</tag>
+				</childs>
+			</tag>
+		</childs>
+	</tag>
+	<!-- aop:config -->
+	<tag name="aop:config">
+		<childs>
+			<tag name="aop:advisor">
+				<attributes>
+					<advice-ref>txAdvice</advice-ref>
+					<pointcut>execution(* service.*.*(..))</pointcut>
+				</attributes>
+			</tag>			
+		</childs>
+	</tag>
+	<!-- freeMarkerViewResolver -->
+	<tag name="bean">
+		<attributes>
+			<id>freeMarkerViewResolver</id>
+			<class>org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver</class>
+		</attributes>
+		<childs>
+			<tag name="property">
+				<attributes>
+					<name>suffux</name>
+					<value>.ftl</value>
+				</attributes>
+			</tag>
+			<tag name="property">
+				<attributes>
+					<name>viewClass</name>
+					<value>org.springframework.web.servlet.view.freemarker.FreeMarkerView</value>
+				</attributes>
+			</tag>
+		</childs>
+	</tag>
+	<!-- freeMarkerConfigurer -->
+	<tag name="bean">
+		<attributes>
+			<id>freeMarkerConfigurer</id>
+			<class>org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer</class>
+		</attributes>
+		<childs>
+			<tag name="property">
+				<attributes>
+					<name>templateLoaderPath</name>
+					<value>/WEB-INF/ftl/</value>
+				</attributes>
+			</tag>
+		</childs>
+	</tag>
+	<!-- messageSource -->
+	<tag name="bean">
+		<attributes>
+			<id>messageSource</id>
+			<class>org.springframework.context.support.ReloadableResourceBundleMessageSource</class>
+		</attributes>
+		<childs>
+			<tag name="property">
+				<attributes>
+					<name>basenames</name>
+					<value>WEB-INF/i18n/messages,WEB-INF/i18n/application</value>
+				</attributes>
+			</tag>
+			<tag name="property">
+				<attributes>
+					<name>fallbackToSystemLocale</name>
+					<value>false</value>
+				</attributes>
+			</tag>
+		</childs>
+	</tag>
+	<!-- multipartResolver -->
+	<tag name="bean">
+		<attributes>
+			<id>multipartResolver</id>
+			<class>org.springframework.web.multipart.commons.CommonsMultipartResolver</class>
+		</attributes>
+	</tag>
+	<!-- tilesViewResolver -->
+	<tag name="bean">
+		<attributes>
+			<id>tilesViewResolver</id>
+			<class>org.springframework.web.servlet.view.UrlBasedViewResolver</class>
+		</attributes>
+		<childs>
+			<tag name="property">
+				<attributes>
+					<name>viewClass</name>
+					<value>org.springframework.web.servlet.view.tiles2.TilesView</value>
+				</attributes>
+			</tag>
+		</childs>
+	</tag>
+	<!-- tilesConfigurer -->
+	<tag name="bean">
+		<attributes>
+			<id>tilesConfigurer</id>
+			<class>org.springframework.web.servlet.view.tiles2.TilesConfigurer</class>
+		</attributes>
+		<childs>
+			<tag name="property">
+				<attributes>
+					<name>definitions</name>
+					<value>WEB-INF/i18n/messages,WEB-INF/i18n/application</value>
+				</attributes>
+				<childs>
+					<tag name="list">
+						<childs>
+							<tag name="value">/WEB-INF/tiles/layouts.xml</tag>
+						</childs>
+					</tag>
+				</childs>
+			</tag>
+		</childs>
+	</tag>
+	<!-- jstlViewResolver -->
+	<tag name="bean">
+		<attributes>
+			<id>jstlViewResolver</id>
+			<class>org.springframework.web.servlet.view.UrlBasedViewResolver</class>
+		</attributes>
+		<childs>
+			<tag name="property">
+				<attributes>
+					<name>viewClass</name>
+					<value>org.springframework.web.servlet.view.JstlView</value>
+				</attributes>
+			</tag>
+			<tag name="property">
+				<attributes>
+					<name>prefix</name>
+					<value>/WEB-INF/pages/</value>
+				</attributes>
+			</tag>
+			<tag name="property">
+				<attributes>
+					<name>suffix</name>
+					<value>.jsp</value>
+				</attributes>
+			</tag>
+		</childs>
+	</tag>
+</tags>

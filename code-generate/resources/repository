@@ -1,0 +1,31 @@
+package ${info.targetPackage};
+
+import ${info.packageName}.${info.className};
+
+
+import java.util.List;
+import java.io.Serializable;
+
+public interface ${info.className}Repository {
+	
+	void save(${info.className} ${info.simpleName});
+	
+	void delete(${info.className} ${info.simpleName});
+	
+	void delete(Serializable id);
+	
+	void update(${info.className} ${info.simpleName});
+	
+	${info.className} find(Serializable id);
+	
+	List<${info.className}> findAll();
+	
+	List<${info.className}> find${info.className}s(int firstResult, int maxResult);
+	
+	List<${info.className}> find${info.className}sForPage(int page, int size);
+	
+	List<${info.className}> find${info.className}sForPage(int page);
+
+	long count();
+		
+}

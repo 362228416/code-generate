@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            id="code_generate.contribution1"
+            
+            objectClass="org.eclipse.core.runtime.IAdaptable">
+         <menu
+               label="Code Generate"
+               id="menu1">
+            <separator
+                  name="generate">
+            </separator>
+         </menu>
+         <action
+               label="Genarate Repository"
+               icon="icons/ico.gif"
+               class="code_generate.popup.actions.GenarateRepositoryAction"
+               menubarPath="menu1/generate"
+               id="code_generate.action1">
+         </action>
+         <action
+               class="code_generate.popup.actions.GenerateServiceAction"
+               icon="icons/ico.gif"
+               id="code-generate.GenerateServiceAction"
+               label="Generate Service"
+               menubarPath="menu1/generate"/>
+         <action
+               class="code_generate.popup.actions.GenerateControllerAction"
+               icon="icons/ico.gif"
+               id="code-generate.GenerateControllerAction"
+               label="Genarate Controller"
+               menubarPath="menu1/generate"/>
+		<action
+               class="code_generate.popup.actions.GenerateRepositoryAndServiceAction"
+               icon="icons/ico.gif"
+               id="code-generate.GenerateRepositoryAndServiceAction"
+               label="Genarate Repository And Service"
+               menubarPath="menu1/generate"/>               
+		<action
+               class="code_generate.popup.actions.GenerateRepositoryAndControllerAction"
+               icon="icons/ico.gif"
+               id="code-generate.GenerateRepositoryAndControllerAction"
+               label="Genarate Repository And Controller"
+               menubarPath="menu1/generate"/>               
+		<action
+               class="code_generate.popup.actions.GenerateRepositoryAndServiceAndControllerAction"
+               icon="icons/ico.gif"
+               id="code-generate.GenerateRepositoryAndServiceAndControllerAction"
+               label="Genarate Repository And Service And Controller"
+               menubarPath="menu1/generate"/>               
+		<action
+               class="code_generate.popup.actions.GenerateToJsonMethodAction"
+               icon="icons/ico.gif"
+               id="code-generate.GenerateToJsonMethodAction"
+               label="Genarate ToJson Method"
+               menubarPath="menu1/generate"/>               
+         <action
+               class="code_generate.popup.actions.GeneratePageAction"
+               icon="icons/ico.gif"
+               id="code-generate.GeneratePageAction"
+               label="Genarate Page"
+               menubarPath="menu1/generate"/>
+         <menu
+               id="menu2"
+               label="Spring Bean Configuration"
+               >
+            <separator name="namespace"/>
+            <separator name="bean"/>
+            <separator name="mvc"/>
+         </menu>
+         <action
+               class="code_generate.popup.actions.AddAnnotationConfigAction"
+               icon="icons/ico.gif"
+               id="code-generate.AddAnnotationConfigAction"
+               label="Add Annotation Configuration"
+               menubarPath="menu2/bean"/>
+         <action
+               class="code_generate.popup.actions.AddContextScanAction"
+               icon="icons/ico.gif"
+               id="code-generate.AddContextScanAction"
+               label="Add context:component-scan"
+               menubarPath="menu2/bean"/>
+         <action
+               class="code_generate.popup.actions.AddMessageSourceAction"
+               icon="icons/ico.gif"
+               id="code-generate.AddMessageSourceAction"
+               label="Add MessageSource"
+               menubarPath="menu2/bean"/>
+         <action
+               class="code_generate.popup.actions.AddSpringMvcConfigAction"
+               icon="icons/ico.gif"
+               id="code-generate.AddSpringMvcConfigAction"
+               label="Add spring mvc configuration"
+               menubarPath="menu2/mvc"
+               tooltip="will declare DispatcherServlet in web.xml"/>
+         <action
+               class="code_generate.popup.actions.AddTilesViewAction"
+               icon="icons/ico.gif"
+               id="code-generate.AddTilesViewAction"
+               label="Add Tiles2 View"
+               menubarPath="menu2/mvc"/>
+         <action
+               class="code_generate.popup.actions.AddFreemarkerViewAction"
+               icon="icons/ico.gif"
+               id="code-generate.AddFreemarkerViewAction"
+               label="Add Freemarker View"
+               menubarPath="menu2/mvc"/>
+         <action
+               class="code_generate.popup.actions.AddJspViewAction"
+               icon="icons/ico.gif"
+               id="code-generate.AddJspViewAction"
+               label="Add Jsp View"
+               menubarPath="menu2/mvc"/>
+         <action
+               class="code_generate.popup.actions.AddDataSourceAction"
+               icon="icons/ico.gif"
+               id="code-generate.AddDataSourceAction"
+               label="Add DataSource"
+               menubarPath="menu2/bean"/>
+         <action
+               class="code_generate.popup.actions.AddJdbcTemplateAction"
+               icon="icons/ico.gif"
+               id="code-generate.AddJdbcTemplateAction"
+               label="Add JdbcTemplate"
+               menubarPath="menu2/bean"/>
+         <action
+               class="code_generate.popup.actions.AddDataSourceTransactionAction"
+               icon="icons/ico.gif"
+               id="code-generate.AddDataSourceTransactionAction"
+               label="Add DataSource Transaction Manager"
+               menubarPath="menu2/bean"/>
+         <action
+               class="code_generate.popup.actions.AddBeansNamespaceAcion"
+               icon="icons/ico.gif"
+               id="code-generate.AddBeansNamespaceAction"
+               label="Add beans namespace"
+               menubarPath="menu2/namespace"/>
+         <action
+               class="code_generate.popup.actions.AddTxNamespaceAction"
+               icon="icons/ico.gif"
+               id="code-generate.AddTxNamespaceAction"
+               label="Add tx namesapce"
+               menubarPath="menu2/namespace"/>
+         <action
+               class="code_generate.popup.actions.AddAopNamespaceAction"
+               icon="icons/ico.gif"
+               id="code-generate.AddAopNamespaceAction"
+               label="Add aop namesapce"
+               menubarPath="menu2/namespace"/>
+         <action
+               class="code_generate.popup.actions.AddContextNamespaceAction"
+               icon="icons/ico.gif"
+               id="code-generate.AddContextNamespaceAction"
+               label="Add context namesapce"
+               menubarPath="menu2/namespace"/>
+         <action
+               class="code_generate.popup.actions.AddAllNamespaceAction"
+               icon="icons/ico.gif"
+               id="code-generate.AddAllNamespaceAction"
+               label="Add all namespace"
+               menubarPath="menu2/namespace"
+               tooltip="will declare spring all namespace"/>
+      </objectContribution>
+   </extension>
+
+</plugin>
