@@ -167,5 +167,27 @@
                tooltip="will declare spring all namespace"/>
       </objectContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="code_generate.preferences.CodePreferencePage"
+            id="code_generate.preferences.CodePreferencePage"
+            name="Code generate">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="code_generate.preferences.ConfigPage"
+            id="code_generate.preferences.ConfigPage"
+            name="Code generate config">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="code_generate.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
 
 </plugin>
