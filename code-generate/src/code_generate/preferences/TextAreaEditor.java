@@ -273,6 +273,7 @@ public class TextAreaEditor extends FieldEditor {
      * Method declared on FieldEditor.
      */
     protected void doStore() {
+//    	if (!getPreferenceName().equals("textarea"))
         getPreferenceStore().setValue(getPreferenceName(), textField.getText());
     }
 
@@ -327,7 +328,9 @@ public class TextAreaEditor extends FieldEditor {
      */
     public Text getTextControl(Composite parent) {
         if (textField == null) {
-            textField = new Text(parent, SWT.SINGLE | SWT.BORDER);
+//            textField = new Text(parent, SWT.SINGLE | SWT.BORDER | SWT.MULTI);
+//        	textField = new Text(parent, SWT.SINGLE | SWT.BORDER);
+        	textField = new Text(parent, SWT.BORDER | SWT.MULTI | SWT.WRAP);
             textField.setFont(parent.getFont());
             switch (validateStrategy) {
             case VALIDATE_ON_KEY_STROKE:

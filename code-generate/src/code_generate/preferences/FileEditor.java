@@ -4,17 +4,16 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.ListEditor;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.DisposeEvent;
-import org.eclipse.swt.events.DisposeListener;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
+
+import code_generate.Activator;
 
 public class FileEditor extends ListEditor {
 
@@ -28,6 +27,8 @@ public class FileEditor extends ListEditor {
      * or <code>null</code> if none.
      */
     private String dirChooserLabelText;
+
+	private SelectChangedListener changedListener;
     
     
     public FileEditor(String name, String labelText,
@@ -42,12 +43,37 @@ public class FileEditor extends ListEditor {
         
 //        getRemoveButton().removeSelectionListener(getRemoveButton());
         
+        List list = getList();
+        if (list.getItemCount() == 0) {
+        	list.add("repository");
+        	list.add("repositoryImpl");
+        	list.add("service");
+        	list.add("serviceImpl");
+        	list.add("controller");
+        	list.add("toJson");
+        }
         
         
-        getList().add("dao");
-        getList().add("service");
-        getList().add("web");
     }
+    
+    @Override
+    protected void selectionChanged() {
+//    	System.out.println("selectionChanged");
+    	List list = getList();
+    	int index = list.getSelectionIndex();
+    	if (index > -1) {
+	    	if (changedListener != null) {
+	    		String select = list.getItem(index);
+	    		changedListener.selectChanged(list.getSelectionIndex(), select);
+	    	}
+    	}
+    	super.selectionChanged();
+    }
+    
+    public void setListSelectChangedListener(SelectChangedListener changedListener) {
+    	this.changedListener = changedListener;
+    }
+    
     
     void removeListeners(Button btn) {
     	Listener[] listeners = btn.getListeners(SWT.Selection);
@@ -124,14 +150,29 @@ public class FileEditor extends ListEditor {
 	
 	@Override
 	protected String createList(String[] items) {
-		StringBuffer path = new StringBuffer("");//$NON-NLS-1$
-        for (int i = 0; i < items.length; i++) {
-            path.append(items[i]);
-            path.append(File.pathSeparator);
-        }
-        return path.toString();
+//		StringBuffer path = new StringBuffer("");//$NON-NLS-1$
+//        for (int i = 0; i < items.length; i++) {
+//            path.append(items[i]);
+//            path.append(File.pathSeparator);
+//            System.out.println(items[i]);
+//        }
+//        System.out.println(path.toString());
+//        return path.toString();
+        return "";
 	}
-
+	
+	
+	@Override
+	protected void doLoadDefault() {
+		super.doLoadDefault();
+		String[] items = getList().getItems();
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		for (String item : items) {
+//			store.setValue(item, "");
+			store.setToDefault(item);
+		}
+	}
+	
 	@Override
 	protected String getNewInputObject() {
 		FileDialog dialog = new FileDialog(getShell(), SWT.SHEET);

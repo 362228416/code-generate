@@ -40,8 +40,12 @@ public class Generator {
 	
 	public static final void generate(String template, Context context, IFile ifile) throws Exception {
 //		generate(engine.getTemplate(template), context, ifile);
-		URL url = Activator.getDefault().getBundle().getEntry(template);
-		InputStreamReader reader = new InputStreamReader(url.openStream());
+//		URL url = Activator.getDefault().getBundle().getEntry(template);
+//		InputStreamReader reader = new InputStreamReader(url.openStream());
+		
+		// 以前是直接读文件的，现在改成直接读内容了
+		StringReader reader = new StringReader(template);
+		
 		StringWriter writer = new StringWriter();
 		engine.evaluate(context, writer, "", reader);
 		if (ifile.exists()) {
@@ -127,11 +131,15 @@ public class Generator {
 		StringWriter writer = new StringWriter();
 		
 		try {
-			URL url = Activator.getDefault().getBundle().getEntry(file);
-			InputStreamReader reader = new InputStreamReader(url.openStream());
+//			URL url = Activator.getDefault().getBundle().getEntry(file);
+//			InputStreamReader reader = new InputStreamReader(url.openStream());
+			
+			// 不读取文件，改成直接读取内容了
+			StringReader reader = new StringReader(file);
+			
 			engine.evaluate(new VelocityContext(map), writer, "", reader);
 			reader.close();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return writer.toString();

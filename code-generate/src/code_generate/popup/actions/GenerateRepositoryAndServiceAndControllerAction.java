@@ -18,15 +18,15 @@ public class GenerateRepositoryAndServiceAndControllerAction  extends IObjectAct
 		NewDialog dialog = new NewDialog(null);
 		if (dialog.open() == 0) {
 			if (dialog.selectRepository()) {
-				GeneratorUtils.generate(action, "resources/repository", dialog.getRepositoryPackage(), "Repository");
-				GeneratorUtils.generate(action, "resources/repositoryImpl", dialog.getRepositoryPackage(), "RepositoryImpl");
+				GeneratorUtils.generate(action, store.getString("repository"), dialog.getRepositoryPackage(), "Repository");
+				GeneratorUtils.generate(action, store.getString("repositoryImpl"), dialog.getRepositoryPackage(), "RepositoryImpl");
 			}
 			if (dialog.selectService()) {
-				GeneratorUtils.generate(action, "resources/service", dialog.getServicePackage(), "Service");
-				GeneratorUtils.generate(action, "resources/serviceImpl", dialog.getServicePackage(), "ServiceImpl");
+				GeneratorUtils.generate(action, store.getString("service"), dialog.getServicePackage(), "Service");
+				GeneratorUtils.generate(action, store.getString("serviceImpl"), dialog.getServicePackage(), "ServiceImpl");
 			}
 			if (dialog.selectController()) {
-				GeneratorUtils.generate(action, "resources/controller", dialog.getControllerPackage(), "Controller");
+				GeneratorUtils.generate(action, store.getString("controller"), dialog.getControllerPackage(), "Controller");
 			}
 		}
 		

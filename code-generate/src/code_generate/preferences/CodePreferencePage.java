@@ -1,6 +1,7 @@
 package code_generate.preferences;
 
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
@@ -19,6 +20,10 @@ import code_generate.Activator;
 
 public class CodePreferencePage extends FieldEditorPreferencePage implements
 		IWorkbenchPreferencePage {
+
+	private FileEditor fileEditor;
+	private TextAreaEditor textAreaEditor;
+	private IPreferenceStore store;
 
 	public CodePreferencePage() {
 		super(GRID);
@@ -63,11 +68,28 @@ public class CodePreferencePage extends FieldEditorPreferencePage implements
 //		Text text = new Text(panel, SWT.BORDER | SWT.MULTI | SWT.WRAP);
 //		text.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
-		addField(new FileEditor("template", "Template", "template", getFieldEditorParent()));
-		addField(new TextAreaEditor("textarea", "Preview", getFieldEditorParent()));
+		fileEditor = new FileEditor("template", "Template", "template", getFieldEditorParent());
+		textAreaEditor = new TextAreaEditor("textarea", "Preview", getFieldEditorParent());
+		store = Activator.getDefault().getPreferenceStore();
+		fileEditor.setListSelectChangedListener(new SelectChangedListener() {
+			@Override
+			public void selectChanged(int index, String value) {
+				listSelectChanged(index, value);
+			}
+		});
+		addField(fileEditor);
+		addField(textAreaEditor);
 		
 	}
 
+	
+	void listSelectChanged(int index, String value) {
+		textAreaEditor.setPreferenceName(value);
+		textAreaEditor.textField.setText(store.getString(value));
+	}
+	
+	
+	
 	/*
 	 * (non-Javadoc)
 	 * 

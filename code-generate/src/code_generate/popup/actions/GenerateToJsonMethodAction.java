@@ -23,7 +23,7 @@ public class GenerateToJsonMethodAction extends IObjectActionDelegateAdapter {
 		List<SourceType> types = PluginUtils.getSourceTypes(action);
 		if (!types.isEmpty()) {
 			for (SourceType type : types) {
-				String methods = Generator.getContent("resources/methods/toJson", Collections.singletonMap("class", (Object)type.getElementName()));
+				String methods = Generator.getContent(store.getString("toJson"), Collections.singletonMap("class", (Object)type.getElementName()));
 				type.createMethod(methods, null, true, null);
 				
 			}

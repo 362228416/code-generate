@@ -1,9 +1,12 @@
 package code_generate.popup.actions;
 
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
+
+import code_generate.Activator;
 
 public class IObjectActionDelegateAdapter implements IObjectActionDelegate {
 
@@ -32,6 +35,6 @@ public class IObjectActionDelegateAdapter implements IObjectActionDelegate {
 	
 	IWorkbenchPart workbenchPart;
 	ISelection selection;
-	
+	IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 
 }
