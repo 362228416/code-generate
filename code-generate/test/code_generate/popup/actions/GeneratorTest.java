@@ -37,7 +37,7 @@ public class GeneratorTest {
 		Context context = new VelocityContext();
 		context.put("name", "zhangsan");
 		StringWriter writer = new StringWriter(); 
-		generator.generate(template, context, writer);
+		Generator.generate(template, context, writer);
 		assertEquals("Hello, zhangsan!", writer.toString());
 	}
 
@@ -45,7 +45,7 @@ public class GeneratorTest {
 	public void testGetContentTemplateMapOfStringObject() {
 		HashMap<String, Object> context = new HashMap<String,Object>();
 		context.put("name", "zhangsan");
-		String result = generator.getContent(template, context);
+		String result = Generator.getContent(template, context);
 		assertEquals("Hello, zhangsan!", result);
 	}
 	
@@ -55,7 +55,7 @@ public class GeneratorTest {
 		Context context = new VelocityContext();
 		context.put("name", "zhangsan");
 		StringWriter writer = new StringWriter();
-		generator.generate(file, context, writer);
+		Generator.generate(file, context, writer);
 		assertEquals("Hello, zhangsan!", writer.toString());
 	}
 
@@ -63,7 +63,7 @@ public class GeneratorTest {
 	public void testGetContentStringMapOfStringObject() {
 		HashMap<String, Object> context = new HashMap<String,Object>();
 		context.put("name", "zhangsan");
-		String result = generator.getContent(file, context);
+		String result = Generator.getContent(file, context);
 		assertEquals("Hello, zhangsan!", result);
 	}
 

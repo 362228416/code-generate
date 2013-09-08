@@ -1,13 +1,10 @@
 package utils;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.net.URL;
 import java.util.Map;
 
 import org.apache.velocity.Template;
@@ -19,8 +16,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 
-import code_generate.Activator;
-
+@SuppressWarnings("restriction")
 public class Generator {
 	
 	public static final VelocityEngine engine;

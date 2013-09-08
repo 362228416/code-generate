@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Code_generate Plug-in
 Bundle-SymbolicName: code_generate; singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 1.1.0
 Bundle-Activator: code_generate.Activator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,

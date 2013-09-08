@@ -175,6 +175,7 @@
             name="Code generate">
       </page>
    </extension>
+   <!--
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
@@ -183,6 +184,7 @@
             name="Code generate config">
       </page>
    </extension>
+   -->
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer

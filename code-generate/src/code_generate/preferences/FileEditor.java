@@ -197,6 +197,7 @@ public class FileEditor extends ListEditor {
 		
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	protected String[] parseString(String stringList) {
 		StringTokenizer st = new StringTokenizer(stringList, File.pathSeparator
