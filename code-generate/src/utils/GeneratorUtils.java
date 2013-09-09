@@ -1,6 +1,7 @@
 package utils;
 
-import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -49,7 +50,11 @@ public class GeneratorUtils {
 //				System.out.println(ifile.exists());
 				
 				
-				Map<String, Object> map = Collections.singletonMap("info", (Object)info);
+//				Map<String, Object> map = Collections.singletonMap("info", (Object)info);
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("info", info);
+				addVariable(map, info);
+				
 				Generator.generate(template, map, ifile);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -68,9 +73,34 @@ public class GeneratorUtils {
 			IProject project = PluginUtils.getProject(file);
 			String classFile = info.getPath() + "/" + info.getClassName() + suffix;
 			IFile ifile = PluginUtils.createJavaFile(project, classFile);
-			Map<String, Object> map = Collections.singletonMap("info", (Object)info);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("info", info);
+			addVariable(map, info);
+			
+			// 添加
+			
 			Generator.generate(template, map, ifile);
 		}
+	}
+	
+	/**
+	 * <p>
+	 * 添加模板变量<br/>
+	 * 在这里添加的变量模板中都可以通过${变量名} 拿到值<br/>
+	 * 如： ${class}
+	 * </p>
+	 * @param map
+	 * @param info
+	 */
+	static void addVariable(Map<String, Object> map, ClassInfo info) {
+		map.put("simpleName", info.getSimpleName());
+		map.put("class", info.getClassName());
+		map.put("fullName", info.getPackageName() + "." + info.getClassName());
+		map.put("path", info.getPath());
+		map.put("suffix", info.getSuffix());
+		map.put("package", info.getPackageName());
+		map.put("target", info.getTargetPackage());
+		map.put("time", new Date(System.currentTimeMillis()));
 	}
 	
 }

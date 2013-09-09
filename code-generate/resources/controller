@@ -1,7 +1,7 @@
-package ${info.targetPackage};
+package ${target};
 
-import ${info.packageName}.${info.className};
-import repository.${info.className}Repository;
+import ${fullName};
+import repository.${class}Repository;
 
 import java.util.Collection;
 
@@ -19,43 +19,43 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Controller
-@RequestMapping("/${info.simpleName}")
-public class ${info.className}${info.suffix} {
+@RequestMapping("/${simpleName}")
+public class ${class}${suffix} {
 	
 	@Autowired
-	${info.className}Repository repository;
+	${class}Repository repository;
 	
 	@RequestMapping()
 	public void list(
 			@RequestParam(required = false, defaultValue = "10") int size,
 			@RequestParam(required = false, defaultValue = "0") int page, Model model) {
         int first = page * size;
-        Collection<${info.className}> ${info.simpleName}s = repository.find${info.className}s(first, size);
-        model.addAttribute("${info.simpleName}s", ${info.simpleName}s);
+        Collection<${class}> ${simpleName}s = repository.find${class}s(first, size);
+        model.addAttribute("${simpleName}s", ${simpleName}s);
 	}
 	
 	@RequestMapping("/{id}")
 	public void view(@PathVariable long id, Model model) {
-		${info.className} ${info.simpleName} = repository.find(id);
-		model.addAttribute("${info.simpleName}", ${info.simpleName});
+		${class} ${simpleName} = repository.find(id);
+		model.addAttribute("${simpleName}", ${simpleName});
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String create(${info.className} ${info.simpleName}) {
-		repository.save(${info.simpleName});
-		return "redirect:/${info.simpleName}/" + ${info.simpleName}.getId();
+	public String create(${class} ${simpleName}) {
+		repository.save(${simpleName});
+		return "redirect:/${simpleName}/" + ${simpleName}.getId();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public String delete(@PathVariable long id) {
 		repository.delete(id);
-		return "redirect:/${info.simpleName}";
+		return "redirect:/${simpleName}";
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT)
-    public String update(${info.className} ${info.simpleName}) {
-        repository.update(${info.simpleName});
-		return "redirect:/${info.simpleName}/" + ${info.simpleName}.getId();
+    public String update(${class} ${simpleName}) {
+        repository.update(${simpleName});
+		return "redirect:/${simpleName}/" + ${simpleName}.getId();
     }
 	
 	// json
@@ -68,23 +68,23 @@ public class ${info.className}${info.suffix} {
 		HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
         int first = page * size;
-        Collection<${info.className}> ${info.simpleName}s = repository.find${info.className}s(first, size);
-        return new ResponseEntity<String>(${info.className}.toJsonArray(${info.simpleName}s), headers, HttpStatus.OK);
+        Collection<${class}> ${simpleName}s = repository.find${class}s(first, size);
+        return new ResponseEntity<String>(${class}.toJsonArray(${simpleName}s), headers, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/{id}", headers = "Accept=application/json")
 	@ResponseBody
 	public ResponseEntity<String> viewJson(@PathVariable long id) {
-		${info.className} ${info.simpleName} = repository.find(id);
+		${class} ${simpleName} = repository.find(id);
 		HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
-        return new ResponseEntity<String>(${info.simpleName}.toJson(), headers, HttpStatus.OK);
+        return new ResponseEntity<String>(${simpleName}.toJson(), headers, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
 	public ResponseEntity<String> createFromJson(@RequestBody String json) {
-		${info.className} ${info.simpleName} = ${info.className}.fromJsonTo${info.className}(json);
-		repository.save(${info.simpleName});
+		${class} ${simpleName} = ${class}.fromJsonTo${class}(json);
+		repository.save(${simpleName});
 		HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
         return new ResponseEntity<String>(headers, HttpStatus.CREATED);
@@ -102,8 +102,8 @@ public class ${info.className}${info.suffix} {
     public ResponseEntity<String> updateFromJson(@RequestBody String json) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
-        ${info.className} ${info.simpleName} = ${info.className}.fromJsonTo${info.className}(json);
-        repository.update(${info.simpleName});
+        ${class} ${simpleName} = ${class}.fromJsonTo${class}(json);
+        repository.update(${simpleName});
         return new ResponseEntity<String>(headers, HttpStatus.OK);
     }
 	

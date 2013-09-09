@@ -1,7 +1,7 @@
-package ${info.targetPackage};
+package ${target};
 
-import ${info.packageName}.${info.className};
-import repository.${info.className}Repository;
+import ${fullName};
+import repository.${class}Repository;
 
 import java.util.List;
 import java.io.Serializable;
@@ -10,58 +10,58 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ${info.className}${info.suffix} implements ${info.className}Service {
+public class ${class}${suffix} implements ${class}Service {
 	
 	@Autowired
-	private ${info.className}Repository repository;
+	private ${class}Repository repository;
 	
-	public ${info.className}ServiceImpl(){}
+	public ${class}ServiceImpl(){}
 	
-	public ${info.className}ServiceImpl(${info.className}Repository repository) {
+	public ${class}ServiceImpl(${class}Repository repository) {
 		this.repository = repository;
 	}
 	
-	public void save${info.className}(${info.className} entity) {
-		repository.save(entity);
+	public void save${class}(${class} ${simpleName}) {
+		repository.save(${simpleName});
 	}
 	
-	public void delete${info.className}(${info.className} entity) {
-		repository.delete(entity);
+	public void delete${class}(${class} ${simpleName}) {
+		repository.delete(${simpleName});
 	}
 	
-	public void delete${info.className}(Serializable id) {
+	public void delete${class}(Serializable id) {
 		repository.delete(id);
 	}
 	
-	public void update${info.className}(${info.className} entity) {
-		repository.update(entity);
+	public void update${class}(${class} ${simpleName}) {
+		repository.update(${simpleName});
 	}
 	
-	public ${info.className} find${info.className}(Serializable id) {
+	public ${class} find${class}(Serializable id) {
 		return repository.find(id);
 	}
 	
-	public List<${info.className}> findAll${info.className}() {
+	public List<${class}> findAll${class}() {
 		return repository.findAll();
 	}
 	
-	public List<${info.className}> find${info.className}s(int firstResult, int maxResult) {
-		return repository.find${info.className}s(firstResult, maxResult);
+	public List<${class}> find${class}s(int firstResult, int maxResult) {
+		return repository.find${class}s(firstResult, maxResult);
 	}
 	
-	public List<${info.className}> find${info.className}sForPage(int page, int size) {
-		return repository.find${info.className}sForPage(page, size);
+	public List<${class}> find${class}sForPage(int page, int size) {
+		return repository.find${class}sForPage(page, size);
 	}
 	
-	public List<${info.className}> find${info.className}sForPage(int page) {
-		return repository.find${info.className}sForPage(page);
+	public List<${class}> find${class}sForPage(int page) {
+		return repository.find${class}sForPage(page);
 	}
 	
-	public void set${info.className}Repository(${info.className}Repository repository) {
+	public void set${class}Repository(${class}Repository repository) {
 		this.repository = repository;
 	}
 	
-	public ${info.className}Repository get${info.className}Repository(${info.className}Repository repository) {
+	public ${class}Repository get${class}Repository(${class}Repository repository) {
 		return repository;
 	}
 	
