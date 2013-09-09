@@ -1,2 +1,2 @@
-这是一个JAVA代码生成插件，目前提供生产Dao，Service，Controller，以及spring Xml 配置，添加spring命名空间，spring Bean 声明，
+这是一个JAVA代码生成插件，目前提供生成Dao，Service，Controller，以及spring Xml 配置，添加spring命名空间，spring Bean 声明，
 Dao, Service, Controller模板可以配置，可根据需要定制模板，更多功能有待开发...
