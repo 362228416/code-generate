@@ -1,13 +1,10 @@
 package utils;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.net.URL;
 import java.util.Map;
 
 import org.apache.velocity.Template;
@@ -19,8 +16,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 
-import code_generate.Activator;
-
+@SuppressWarnings("restriction")
 public class Generator {
 	
 	public static final VelocityEngine engine;
@@ -44,29 +40,43 @@ public class Generator {
 //		InputStreamReader reader = new InputStreamReader(url.openStream());
 		
 		// 以前是直接读文件的，现在改成直接读内容了
-		StringReader reader = new StringReader(template);
 		
 		StringWriter writer = new StringWriter();
-		engine.evaluate(context, writer, "", reader);
+		
+		
+		engine.evaluate(context, writer, "", new StringReader(template));
+		
 		if (ifile.exists()) {
 			ifile.setContents(new ByteArrayInputStream(writer.toString().getBytes()), true, true, null);
 		} else {
 			IProject project = ifile.getProject();
 			File file = (File) ifile;
+			
 			String[] paths = file.getProjectRelativePath().segments();
 			StringBuffer pb = new StringBuffer();
+			
 			// 创建父类文件夹
-			for (int i = 0; i < paths.length - 1; i++) {
-				pb.append(paths[i] + "/");
+//			for (int i = 0; i < paths.length - 1; i++) {
+//				String str = paths[i] + "/"; 
+//				pb.append(str);
+//				IFolder folder = project.getFolder(pb.toString());
+//				if (!folder.exists()) {
+//					folder.create(true, true, null);
+//				}
+//			}
+			
+			int i, count = paths.length - 1;
+			for (i = 0; i < count; i++) {
+				String str = paths[i] + "/"; 
+				pb.append(str);
 				IFolder folder = project.getFolder(pb.toString());
 				if (!folder.exists()) {
 					folder.create(true, true, null);
 				}
 			}
+			
 			ifile.create(new ByteArrayInputStream(writer.toString().getBytes()), true, null);
 		}
-		reader.close();
-		
 	}
 	
 	public static final void generate(String template, Map<String,Object> map, IFile ifile) throws Exception {
@@ -135,10 +145,10 @@ public class Generator {
 //			InputStreamReader reader = new InputStreamReader(url.openStream());
 			
 			// 不读取文件，改成直接读取内容了
-			StringReader reader = new StringReader(file);
 			
-			engine.evaluate(new VelocityContext(map), writer, "", reader);
-			reader.close();
+			engine.evaluate(new VelocityContext(map), writer, "", new StringReader(file));
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

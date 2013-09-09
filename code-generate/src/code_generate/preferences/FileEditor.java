@@ -43,15 +43,15 @@ public class FileEditor extends ListEditor {
         
 //        getRemoveButton().removeSelectionListener(getRemoveButton());
         
-        List list = getList();
-        if (list.getItemCount() == 0) {
-        	list.add("repository");
-        	list.add("repositoryImpl");
-        	list.add("service");
-        	list.add("serviceImpl");
-        	list.add("controller");
-        	list.add("toJson");
-        }
+//        List list = getList();
+//        if (list.getItemCount() == 0) {
+//        	list.add("repository");
+//        	list.add("repositoryImpl");
+//        	list.add("service");
+//        	list.add("serviceImpl");
+//        	list.add("controller");
+//        	list.add("toJson");
+//        }
         
         
     }
@@ -197,6 +197,7 @@ public class FileEditor extends ListEditor {
 		
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	protected String[] parseString(String stringList) {
 		StringTokenizer st = new StringTokenizer(stringList, File.pathSeparator

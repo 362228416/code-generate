@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Code_generate Plug-in
 Bundle-SymbolicName: code_generate; singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 1.1.0
 Bundle-Activator: code_generate.Activator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
@@ -12,7 +12,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.text;bundle-version="3.5.101",
  org.eclipse.ui.ide;bundle-version="3.7.0"
 Eclipse-LazyStart: true
-Bundle-ClassPath: lib/commons-lang-2.6.jar,
+Bundle-ClassPath: .,
+ classes,
+ lib/commons-lang-2.6.jar,
  lib/commons-collections-3.2.1.jar,
  lib/velocity-1.7.jar,
  lib/dom4j-1.6.1.jar

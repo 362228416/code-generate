@@ -14,8 +14,6 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.jdt.core.IJavaElement;
-import org.eclipse.jdt.core.IPackageFragment;
-import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.internal.core.CompilationUnit;
 import org.eclipse.jdt.internal.core.CompilationUnitElementInfo;
 import org.eclipse.jdt.internal.core.Openable;
@@ -101,6 +99,7 @@ public class PluginUtils {
 		return list.get(0);
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public static List<CompilationUnit> getCompilationUnits(Object obj) {
 		List<CompilationUnit> files = new ArrayList<CompilationUnit>();
 		if (obj instanceof CompilationUnit) {

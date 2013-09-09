@@ -25,12 +25,12 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 //		store.setDefault(PreferenceConstants.P_CHOICE, "choice2");
 //		store.setDefault(PreferenceConstants.P_STRING, "Default value");
 		
-		store.setDefault("controller", getContent("../resources/controller"));
-		store.setDefault("repository", getContent("../resources/repository"));
-		store.setDefault("repositoryImpl", getContent("../resources/repositoryImpl"));
-		store.setDefault("service", getContent("../resources/service"));
-		store.setDefault("serviceImpl", getContent("../resources/serviceImpl"));
-		store.setDefault("toJson", getContent("../resources/methods/toJson"));
+		store.setDefault("controller", getContent("resources/controller"));
+		store.setDefault("repository", getContent("resources/repository"));
+		store.setDefault("repositoryImpl", getContent("resources/repositoryImpl"));
+		store.setDefault("service", getContent("resources/service"));
+		store.setDefault("serviceImpl", getContent("resources/serviceImpl"));
+		store.setDefault("toJson", getContent("resources/methods/toJson"));
 		store.setDefault("textArea", "");
 		store.setDefault("template", "repository;repositoryImpl;service;serviceImpl;controller;toJson;");
 		
