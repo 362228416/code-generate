@@ -23,6 +23,11 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.internal.ObjectPluginAction;
 
+/**
+ * 辅助类，提供对Eclipse 插件信息的获取
+ * @author john
+ *
+ */
 @SuppressWarnings("restriction")
 public class PluginUtils {
 

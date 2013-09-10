@@ -5,7 +5,11 @@ import org.eclipse.jface.action.IAction;
 import com.ydpp.eclipse.actions.IObjectActionDelegateAdapter;
 import com.ydpp.util.SpringXmlUtils;
 
-
+/**
+ * 
+ * @author john
+ *
+ */
 public class AddMessageSourceAction extends IObjectActionDelegateAdapter {
 
 	@Override

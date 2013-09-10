@@ -15,6 +15,11 @@ import org.dom4j.Element;
 import org.dom4j.Namespace;
 import org.dom4j.io.SAXReader;
 
+/**
+ * 提供添加Bean到spring配置文件的功能
+ * @author john
+ *
+ */
 @SuppressWarnings("rawtypes")
 public class SpringBeanConfigUtils {
 	

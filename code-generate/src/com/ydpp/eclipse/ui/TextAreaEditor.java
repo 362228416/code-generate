@@ -27,10 +27,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * A field editor for a string type preference.
- * <p>
- * This class may be used as is, or subclassed as required.
- * </p>
+ * TextAreaEditor
+ * @author John
  */
 public class TextAreaEditor extends FieldEditor {
 

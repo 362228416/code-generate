@@ -8,7 +8,11 @@ import org.eclipse.ui.IWorkbenchPart;
 
 import com.ydpp.eclipse.CodeGeneratePlugin;
 
-
+/**
+ * 
+ * @author john
+ *
+ */
 public class IObjectActionDelegateAdapter implements IObjectActionDelegate {
 
 	@Override

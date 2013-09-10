@@ -1,12 +1,25 @@
 package com.ydpp.eclipse.preferences;
 
+import java.io.File;
+import java.io.FileInputStream;
+
+import org.apache.commons.io.IOUtils;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.layout.RowLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
 import com.ydpp.eclipse.CodeGeneratePlugin;
+import com.ydpp.eclipse.dialog.ExportDialog;
 import com.ydpp.eclipse.event.SelectChangedListener;
+import com.ydpp.eclipse.listener.MouseListenerAdapter;
 import com.ydpp.eclipse.ui.FileEditor;
 import com.ydpp.eclipse.ui.TextAreaEditor;
 
@@ -28,11 +41,12 @@ public class CodePreferencePage extends FieldEditorPreferencePage implements
 	private FileEditor fileEditor;
 	private TextAreaEditor textAreaEditor;
 	private IPreferenceStore store;
+	private Button exportBtn;
+	private Button importBtn;
 
 	public CodePreferencePage() {
 		super(GRID);
 		setPreferenceStore(CodeGeneratePlugin.getDefault().getPreferenceStore());
-//		setDescription("A demonstration of a preference page implementation");
 		setDescription("Code generate config");
 	}
 
@@ -54,23 +68,6 @@ public class CodePreferencePage extends FieldEditorPreferencePage implements
 //		addField(new StringFieldEditor(PreferenceConstants.P_STRING,
 //				"A &text preference:", getFieldEditorParent()));
 		
-//		FieldEditor
-		
-//		addField(new PathEditor("dao", "DAO", "SS", getFieldEditorParent()));
-//		addField(new DirectoryFieldEditor("dir", "DIR", getFieldEditorParent()));
-//		addField(new FileFieldEditor("file", "File", getFieldEditorParent()));
-//		addField(new StringFieldEditor("str", "STR", getFieldEditorParent()));
-//		
-		
-//		Composite parent = getFieldEditorParent();
-//		Composite panel = new Composite(parent, SWT.NONE);
-//		GridLayout layout = new GridLayout();
-//		layout.marginHeight = 0;
-//		layout.marginWidth = 0;
-//		panel.setLayout(layout);
-//		
-//		Text text = new Text(panel, SWT.BORDER | SWT.MULTI | SWT.WRAP);
-//		text.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		fileEditor = new FileEditor("template", "Template", "template", getFieldEditorParent());
 		textAreaEditor = new TextAreaEditor("textarea", "Preview", getFieldEditorParent());
@@ -84,15 +81,65 @@ public class CodePreferencePage extends FieldEditorPreferencePage implements
 		addField(fileEditor);
 		addField(textAreaEditor);
 		
+		RowLayout btnLayout = new RowLayout();
+		Composite btns = new Composite(getFieldEditorParent(), NONE);
+		btns.setLayout(btnLayout);
+		
+		exportBtn = new Button(btns, NONE);
+		importBtn = new Button(btns, NONE);
+		
+		exportBtn.setText("export");
+		importBtn.setText("import");
+		exportBtn.addMouseListener(new MouseListenerAdapter(){
+			@Override
+			public void mouseUp(MouseEvent event) {
+				exportConfig();
+			}
+		});
+		importBtn.addMouseListener(new MouseListenerAdapter(){
+			@Override
+			public void mouseUp(MouseEvent event) {
+				importConfig();
+			}
+		});
+		
+		
 	}
 
+	/**
+	 * 导入配置
+	 */
+	void importConfig() {
+		FileDialog dialog = new FileDialog(getShell());
+		String fileName = dialog.open();
+		File file = new File(fileName);
+		if (file.exists()) {
+			try {
+				String content = IOUtils.toString(new FileInputStream(file));
+				Element root = DocumentHelper.parseText(content).getRootElement();
+				
+				for (String key : PreferenceConstants.P_PROPERTIES) {
+					store.setValue(key, root.elementText(key));
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+		}
+		textAreaEditor.setStringValue(store.getString(textAreaEditor.getPreferenceName()));
+	}
+	
+	/**
+	 * 导出配置
+	 */
+	void exportConfig() {
+		new ExportDialog(getShell()).open();
+	}
 	
 	void listSelectChanged(int index, String value) {
 		textAreaEditor.setPreferenceName(value);
-		textAreaEditor.getTextField().setText(store.getString(value));
+		textAreaEditor.setStringValue(store.getString(value));
 	}
-	
-	
 	
 	/*
 	 * (non-Javadoc)

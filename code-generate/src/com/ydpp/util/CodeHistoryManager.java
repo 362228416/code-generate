@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * 
+ * 代码生成历史管理
  * @author john
  */
 public class CodeHistoryManager {

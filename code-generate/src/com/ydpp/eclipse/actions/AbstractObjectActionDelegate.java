@@ -5,6 +5,11 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
+/**
+ * 
+ * @author john
+ *
+ */
 public abstract class AbstractObjectActionDelegate implements
 		IObjectActionDelegate {
 

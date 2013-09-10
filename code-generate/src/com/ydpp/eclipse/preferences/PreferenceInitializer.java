@@ -12,6 +12,7 @@ import com.ydpp.eclipse.CodeGeneratePlugin;
 
 /**
  * Class used to initialize default preference values.
+ * @author John
  */
 public class PreferenceInitializer extends AbstractPreferenceInitializer {
 

@@ -20,6 +20,11 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.internal.layout.CellLayout;
 import org.eclipse.ui.internal.layout.Row;
 
+/**
+ * 生成repository, service, controller对话框
+ * @author john
+ *
+ */
 @SuppressWarnings("restriction")
 public class NewDialog extends WizardDialog {
 

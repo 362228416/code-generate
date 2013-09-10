@@ -2,6 +2,11 @@ package com.ydpp.util;
 
 import org.eclipse.jdt.internal.core.SourceType;
 
+/**
+ * Domain 相关信息
+ * @author john
+ *
+ */
 @SuppressWarnings("restriction")
 public class ClassInfo {
 	

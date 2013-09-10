@@ -7,7 +7,11 @@ import com.ydpp.eclipse.dialog.NewDialog;
 import com.ydpp.util.GeneratorUtils;
 
 
-
+/**
+ * 
+ * @author john
+ *
+ */
 public class GenerateRepositoryAndServiceAndControllerAction  extends IObjectActionDelegateAdapter {
 
 	@Override

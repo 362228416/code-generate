@@ -17,6 +17,11 @@ import com.ydpp.util.PluginUtils;
 
 import sun.misc.IOUtils;
 
+/**
+ * 
+ * @author john
+ *
+ */
 @SuppressWarnings({ "restriction", "unused" })
 public class GenerateToJsonMethodAction extends IObjectActionDelegateAdapter {
 

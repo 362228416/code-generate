@@ -170,7 +170,7 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            class="code_generate.preferences.CodePreferencePage"
+            class="com.ydpp.eclipse.preferences.CodePreferencePage"
             id="com.ydpp.eclipse.preferences.CodePreferencePage"
             name="Code generate">
       </page>

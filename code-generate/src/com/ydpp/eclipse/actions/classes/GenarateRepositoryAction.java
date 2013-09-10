@@ -8,7 +8,11 @@ import com.ydpp.eclipse.actions.IObjectActionDelegateAdapter;
 import com.ydpp.util.GeneratorUtils;
 
 
-
+/**
+ * 
+ * @author john
+ *
+ */
 public class GenarateRepositoryAction extends IObjectActionDelegateAdapter {
 
 

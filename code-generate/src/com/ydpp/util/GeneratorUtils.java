@@ -12,7 +12,11 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.internal.PluginAction;
 
-
+/**
+ * 生成器辅助类
+ * @author john
+ *
+ */
 @SuppressWarnings("restriction")
 public class GeneratorUtils {
 	
@@ -38,19 +42,12 @@ public class GeneratorUtils {
 		Object obj = select.getFirstElement();
 		if (obj instanceof CompilationUnit) {
 			try {
-//				ClassInfo info = new ClassInfo(PluginUtils.getSourceType(obj), suffix);
 				ClassInfo info = PluginUtils.getClassInfo(obj);
 				info.setSuffix(suffix);
 				IProject project = PluginUtils.getProject(obj);
-//				String classFile = info.getPath() + info.getPackageName() + "." + info.getClassName() + suffix;
 				String classFile = info.getPath() + "/" + info.getClassName() + suffix;
 				IFile ifile = PluginUtils.createJavaFile(project, classFile);
-//				System.out.println(ifile.getFullPath());
-//				System.out.println(ifile.getName());
-//				System.out.println(ifile.exists());
 				
-				
-//				Map<String, Object> map = Collections.singletonMap("info", (Object)info);
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("info", info);
 				addVariable(map, info);

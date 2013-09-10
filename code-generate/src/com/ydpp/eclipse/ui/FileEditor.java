@@ -7,17 +7,18 @@ import java.util.StringTokenizer;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.ListEditor;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.List;
-import org.eclipse.swt.widgets.Listener;
-
 
 import com.ydpp.eclipse.CodeGeneratePlugin;
 import com.ydpp.eclipse.event.SelectChangedListener;
 
-
+/**
+ * 
+ * @author john
+ *
+ */
 public class FileEditor extends ListEditor {
 
 	/**
@@ -44,8 +45,6 @@ public class FileEditor extends ListEditor {
         getDownButton().setEnabled(false);
         getUpButton().setEnabled(false);
         
-//        getRemoveButton().removeSelectionListener(getRemoveButton());
-        
 //        List list = getList();
 //        if (list.getItemCount() == 0) {
 //        	list.add("repository");
@@ -61,7 +60,6 @@ public class FileEditor extends ListEditor {
     
     @Override
     protected void selectionChanged() {
-//    	System.out.println("selectionChanged");
     	List list = getList();
     	int index = list.getSelectionIndex();
     	if (index > -1) {
@@ -78,74 +76,9 @@ public class FileEditor extends ListEditor {
     }
     
     
-    void removeListeners(Button btn) {
-    	Listener[] listeners = btn.getListeners(SWT.Selection);
-    	for (Listener listener : listeners) {
-    		System.out.println(listener);
-			//btn.removeSelectionListener((SelectionListener) listener);
-		}
-    }
-    
-//    private Composite buttonBox;
-    
-    @Override
-    public Composite getButtonBoxControl(Composite parent) {
-    	// TODO Auto-generated method stub
-    	return super.getButtonBoxControl(parent);
-//    	Composite boxControl = super.getButtonBoxControl(parent);
-//    	
-////    	removeListeners(getAddButton());
-////        removeListeners(getRemoveButton());
-////        removeListeners(getDownButton());
-////        removeListeners(getUpButton());
-//    	
-//    	boxControl.setEnabled(false);
-//    	
-//        return boxControl;
-    	
-    	
-//    	if (buttonBox == null) {
-//            buttonBox = new Composite(parent, SWT.NULL);
-//            GridLayout layout = new GridLayout();
-//            layout.marginWidth = 0;
-//            buttonBox.setLayout(layout);
-////            createButtons(buttonBox);
-//            buttonBox.addDisposeListener(new DisposeListener() {
-//                public void widgetDisposed(DisposeEvent event) {
-////                    addButton = null;
-////                    removeButton = null;
-////                    upButton = null;
-////                    downButton = null;
-////                    buttonBox = null;
-//                }
-//            });
-//
-//        } else {
-//            checkParent(buttonBox, parent);
-//        }
-//
-//        selectionChanged();
-//        return buttonBox;
-    	
-    }
-    
     @Override
     public void createSelectionListener() {
     	super.createSelectionListener();
-//    	super.selectionListener = new SelectionListener() {
-//			
-//			@Override
-//			public void widgetSelected(SelectionEvent e) {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//			
-//			@Override
-//			public void widgetDefaultSelected(SelectionEvent e) {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//		}; 
     }
     
     
@@ -171,7 +104,6 @@ public class FileEditor extends ListEditor {
 		String[] items = getList().getItems();
 		IPreferenceStore store = CodeGeneratePlugin.getDefault().getPreferenceStore();
 		for (String item : items) {
-//			store.setValue(item, "");
 			store.setToDefault(item);
 		}
 	}

@@ -4,7 +4,11 @@ import org.eclipse.jface.action.IAction;
 
 import com.ydpp.eclipse.actions.IObjectActionDelegateAdapter;
 
-
+/**
+ * 
+ * @author john
+ *
+ */
 public class GeneratePageAction extends IObjectActionDelegateAdapter {
 
 	@Override

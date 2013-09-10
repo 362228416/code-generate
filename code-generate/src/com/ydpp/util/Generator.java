@@ -16,6 +16,11 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 
+/**
+ * 代码生成器
+ * @author john
+ *
+ */
 @SuppressWarnings("restriction")
 public class Generator {
 	
@@ -64,7 +69,7 @@ public class Generator {
 //					folder.create(true, true, null);
 //				}
 //			}
-			
+			// 以上代码编译，没问题运行也没问题，但是导出的时候就报错，原因不详暂且留着
 			int i, count = paths.length - 1;
 			for (i = 0; i < count; i++) {
 				String str = paths[i] + "/"; 
@@ -153,36 +158,6 @@ public class Generator {
 			e.printStackTrace();
 		}
 		return writer.toString();
-		
-	}
-	
-	public static void main(String[] args) {
-//		VelocityEngine engine = new VelocityEngine();
-//		Template template = engine.getTemplate("resources/test");
-//		Context context = new VelocityContext();
-//		context.put("name", "zhangsan");
-//		Writer writer = new StringWriter();
-//		template.merge(context, writer);
-//		System.out.println(writer.toString());
-		
-		///////////
-		try {
-			
-			StringWriter writer = new StringWriter();
-			StringReader in = new StringReader("hello ${name} !");
-			Context context = new VelocityContext();
-			context.put("name", "zhangsan");
-			Generator.engine.evaluate(context, writer, "", in);
-			System.out.println(writer.toString());
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		
-		
-		
 		
 	}
 	

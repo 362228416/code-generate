@@ -9,6 +9,10 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.internal.ObjectPluginAction;
 
+/**
+ * @author john
+ *
+ */
 @SuppressWarnings("restriction")
 public class SpringXmlUtils {
 	

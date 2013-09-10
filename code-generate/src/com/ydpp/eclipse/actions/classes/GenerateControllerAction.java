@@ -7,8 +7,11 @@ import org.eclipse.jface.dialogs.InputDialog;
 import com.ydpp.eclipse.actions.IObjectActionDelegateAdapter;
 import com.ydpp.util.GeneratorUtils;
 
-
-
+/**
+ * 
+ * @author john
+ *
+ */
 public class GenerateControllerAction extends IObjectActionDelegateAdapter {
 
 	@Override

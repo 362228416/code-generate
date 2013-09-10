@@ -8,7 +8,11 @@ import com.ydpp.eclipse.actions.IObjectActionDelegateAdapter;
 import com.ydpp.util.SpringBeanConfigUtils;
 import com.ydpp.util.SpringXmlUtils;
 
-
+/**
+ * 
+ * @author john
+ *
+ */
 public class AddAllNamespaceAction extends IObjectActionDelegateAdapter {
 
 	@Override
