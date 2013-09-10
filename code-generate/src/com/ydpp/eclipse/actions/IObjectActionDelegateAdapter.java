@@ -24,9 +24,7 @@ public class IObjectActionDelegateAdapter implements IObjectActionDelegate {
 		}
 	}
 	
-	public void execute(IAction action) throws Exception {
-		
-	}
+	public void execute(IAction action) throws Exception {}
 
 	@Override
 	public void selectionChanged(IAction action, ISelection selection) {
@@ -38,8 +36,16 @@ public class IObjectActionDelegateAdapter implements IObjectActionDelegate {
 		this.workbenchPart = workbenchPart;
 	}
 	
-	IWorkbenchPart workbenchPart;
-	ISelection selection;
+	public String getString(String key) {
+		return store.getString(key);
+	}
+	
+	public String getDefaultString(String key) {
+		return store.getDefaultString(key);
+	}
+	
+	protected IWorkbenchPart workbenchPart;
+	protected ISelection selection;
 	protected IPreferenceStore store = CodeGeneratePlugin.getDefault().getPreferenceStore();
 
 }

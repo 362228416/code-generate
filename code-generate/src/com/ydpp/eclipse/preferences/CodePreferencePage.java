@@ -118,7 +118,7 @@ public class CodePreferencePage extends FieldEditorPreferencePage implements
 				String content = IOUtils.toString(new FileInputStream(file));
 				Element root = DocumentHelper.parseText(content).getRootElement();
 				
-				for (String key : PreferenceConstants.P_PROPERTIES) {
+				for (String key : PreferenceInitializer.STORE_KEYS) {
 					store.setValue(key, root.elementText(key));
 				}
 				

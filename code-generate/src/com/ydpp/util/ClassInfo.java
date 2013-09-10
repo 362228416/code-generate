@@ -16,6 +16,7 @@ public class ClassInfo {
 	private String suffix;
 	private String path;
 	private String simpleName;
+//	private Set<Field>
 	
 	public String getPath() {
 		return path;

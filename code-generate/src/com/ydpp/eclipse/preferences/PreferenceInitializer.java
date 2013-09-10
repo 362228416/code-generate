@@ -3,6 +3,9 @@ package com.ydpp.eclipse.preferences;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashSet;
+import java.util.Properties;
+import java.util.Set;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -22,26 +25,100 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 	 * @see org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer#initializeDefaultPreferences()
 	 */
 	public void initializeDefaultPreferences() {
-		IPreferenceStore store = CodeGeneratePlugin.getDefault().getPreferenceStore();
-//		store.setDefault(PreferenceConstants.P_BOOLEAN, true);
-//		store.setDefault(PreferenceConstants.P_CHOICE, "choice2");
-//		store.setDefault(PreferenceConstants.P_STRING, "Default value");
-		
-		store.setDefault("controller", getContent("resources/controller"));
-		store.setDefault("repository", getContent("resources/repository"));
-		store.setDefault("repositoryImpl", getContent("resources/repositoryImpl"));
-		store.setDefault("service", getContent("resources/service"));
-		store.setDefault("serviceImpl", getContent("resources/serviceImpl"));
-		store.setDefault("toJson", getContent("resources/methods/toJson"));
-		store.setDefault("textArea", "");
-		store.setDefault("template", "repository;repositoryImpl;service;serviceImpl;controller;toJson;");
+		try {
+			init();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
-	String getContent(String template) {
-//		InputStream in = this.getClass().getClassLoader().getResourceAsStream("resources/" + template);
-		InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream(template);
+	/**
+	 * 加载模板资源保存至Eclipse Store 
+	 * @throws Exception
+	 */
+	void init() throws Exception {
+		IPreferenceStore store = CodeGeneratePlugin.getDefault().getPreferenceStore();
+		// old version template
+		setDefault("template", "repository;repositoryImpl;service;serviceImpl;controller;toJson;");
+		setDefault("textArea", "");
+		loadResourceAndStore("controller");
+		loadResourceAndStore("repository");
+		loadResourceAndStore("repositoryImpl");
+		loadResourceAndStore("service");
+		loadResourceAndStore("serviceImpl");
+		loadResourceAndStore("toJson", "methods/toJson.vm");
 		
+		// load config
+		Properties prop = new Properties();
+		prop.load(getResourceAsStream("resources/config.properties"));
+		Set<Object> keySet = prop.keySet();
+		for (Object key : keySet) {
+			store.setDefault(key.toString(), prop.get(key).toString());
+		}
+		
+		// load template
+		loadResourceAndStoreFromClasses("hibernate-dao");
+		loadResourceAndStoreFromClasses("hibernate-dao-impl");
+		loadResourceAndStoreFromClasses("jpa-dao");
+		loadResourceAndStoreFromClasses("jpa-dao-impl");
+		loadResourceAndStoreFromClasses("junit-test");
+		loadResourceAndStoreFromClasses("myibatis-dao");
+		loadResourceAndStoreFromClasses("spring-dao-test");
+		loadResourceAndStoreFromClasses("spring-service");
+		loadResourceAndStoreFromClasses("spring-service-impl");
+		loadResourceAndStoreFromClasses("spring-service-test");
+		loadResourceAndStoreFromClasses("springmvc-json");
+		loadResourceAndStoreFromClasses("springmvc-rest");
+		loadResourceAndStoreFromClasses("struts-action");
+		loadResourceAndStoreFromClasses("struts-action-test");
+		loadResourceAndStoreFromClasses("struts-rest");
+		
+		loadResourceAndStoreFromPages("extjs-controller");
+		loadResourceAndStoreFromPages("extjs-create");
+		loadResourceAndStoreFromPages("extjs-layout");
+		loadResourceAndStoreFromPages("extjs-list");
+		loadResourceAndStoreFromPages("extjs-menu");
+		loadResourceAndStoreFromPages("extjs-model");
+		loadResourceAndStoreFromPages("extjs-show");
+		loadResourceAndStoreFromPages("extjs-store");
+		loadResourceAndStoreFromPages("extjs-update");
+		
+		loadResourceAndStoreFromMethods("toJson");
+	}
+	
+	
+	// 加载资源，并保存至store
+	void loadResourceAndStoreFromClasses(String name) {
+		loadResourceAndStore(name, "classes/" + name + ".vm");
+	}
+	
+	void loadResourceAndStoreFromPages(String name) {
+		loadResourceAndStore(name, "pages/" + name + ".vm");
+	}
+	
+	void loadResourceAndStoreFromMethods(String name) {
+		loadResourceAndStore(name, "methods/" + name + ".vm");
+	}
+	
+	void loadResourceAndStore(String name) {
+		loadResourceAndStore(name, name + ".vm");
+	}
+	
+	void loadResourceAndStore(String name, String resource) {
+		setDefault(name, getContent("resources/" + resource));
+	}
+	
+	void setDefault(String name, String value) {
+		STORE_KEYS.add(name);
+		CodeGeneratePlugin.getDefault().getPreferenceStore().setDefault(name, value);
+	}
+	
+	public static Set<String> STORE_KEYS = new HashSet<String>();
+	
+	String getContent(String template) {
+		InputStream in = getResourceAsStream(template);
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		String content = null;
 		try {
@@ -58,6 +135,10 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 			e.printStackTrace();
 		}
 		return content;
+	}
+	
+	InputStream getResourceAsStream(String resource) {
+		return Thread.currentThread().getContextClassLoader().getResourceAsStream(resource);
 	}
 
 }

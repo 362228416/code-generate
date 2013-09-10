@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
 import com.ydpp.eclipse.CodeGeneratePlugin;
-import com.ydpp.eclipse.preferences.PreferenceConstants;
+import com.ydpp.eclipse.preferences.PreferenceInitializer;
 
 /**
  * 导出配置对话框
@@ -37,7 +37,7 @@ public class ExportDialog extends Dialog {
 		Document doc = DocumentHelper.createDocument();
 		Element root = doc.addElement("config");
 		
-		for (String key : PreferenceConstants.P_PROPERTIES) {
+		for (String key : PreferenceInitializer.STORE_KEYS) {
 			Element element = root.addElement(key);
 			element.setText(store.getString(key));
 		}
