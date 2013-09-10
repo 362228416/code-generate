@@ -19,50 +19,50 @@
          <action
                label="Genarate Repository"
                icon="icons/ico.gif"
-               class="code_generate.popup.actions.GenarateRepositoryAction"
+               class="com.ydpp.eclipse.actions.classes.GenarateRepositoryAction"
                menubarPath="menu1/generate"
                id="code_generate.action1">
          </action>
          <action
-               class="code_generate.popup.actions.GenerateServiceAction"
+               class="com.ydpp.eclipse.actions.classes.GenerateServiceAction"
                icon="icons/ico.gif"
-               id="code-generate.GenerateServiceAction"
+               id="com.ydpp.eclipse.actions.xml.GenerateServiceAction"
                label="Generate Service"
                menubarPath="menu1/generate"/>
          <action
-               class="code_generate.popup.actions.GenerateControllerAction"
+               class="com.ydpp.eclipse.actions.classes.GenerateControllerAction"
                icon="icons/ico.gif"
-               id="code-generate.GenerateControllerAction"
+               id="com.ydpp.eclipse.actions.classes.GenerateControllerAction"
                label="Genarate Controller"
                menubarPath="menu1/generate"/>
 		<action
-               class="code_generate.popup.actions.GenerateRepositoryAndServiceAction"
+               class="com.ydpp.eclipse.actions.classes.GenerateRepositoryAndServiceAction"
                icon="icons/ico.gif"
-               id="code-generate.GenerateRepositoryAndServiceAction"
+               id="com.ydpp.eclipse.actions.classes.GenerateRepositoryAndServiceAction"
                label="Genarate Repository And Service"
                menubarPath="menu1/generate"/>               
 		<action
-               class="code_generate.popup.actions.GenerateRepositoryAndControllerAction"
+               class="com.ydpp.eclipse.actions.classes.GenerateRepositoryAndControllerAction"
                icon="icons/ico.gif"
-               id="code-generate.GenerateRepositoryAndControllerAction"
+               id="com.ydpp.eclipse.actions.classes.GenerateRepositoryAndControllerAction"
                label="Genarate Repository And Controller"
                menubarPath="menu1/generate"/>               
 		<action
-               class="code_generate.popup.actions.GenerateRepositoryAndServiceAndControllerAction"
+               class="com.ydpp.eclipse.actions.classes.GenerateRepositoryAndServiceAndControllerAction"
                icon="icons/ico.gif"
-               id="code-generate.GenerateRepositoryAndServiceAndControllerAction"
+               id="com.ydpp.eclipse.actions.classes.GenerateRepositoryAndServiceAndControllerAction"
                label="Genarate Repository And Service And Controller"
                menubarPath="menu1/generate"/>               
 		<action
-               class="code_generate.popup.actions.GenerateToJsonMethodAction"
+               class="com.ydpp.eclipse.actions.method.GenerateToJsonMethodAction"
                icon="icons/ico.gif"
-               id="code-generate.GenerateToJsonMethodAction"
+               id="com.ydpp.eclipse.actions.method.GenerateToJsonMethodAction"
                label="Genarate ToJson Method"
                menubarPath="menu1/generate"/>               
          <action
-               class="code_generate.popup.actions.GeneratePageAction"
+               class="com.ydpp.eclipse.actions.classes.GeneratePageAction"
                icon="icons/ico.gif"
-               id="code-generate.GeneratePageAction"
+               id="com.ydpp.eclipse.actions.classes.GeneratePageAction"
                label="Genarate Page"
                menubarPath="menu1/generate"/>
          <menu
@@ -74,94 +74,94 @@
             <separator name="mvc"/>
          </menu>
          <action
-               class="code_generate.popup.actions.AddAnnotationConfigAction"
+               class="com.ydpp.eclipse.actions.xml.AddAnnotationConfigAction"
                icon="icons/ico.gif"
-               id="code-generate.AddAnnotationConfigAction"
+               id="com.ydpp.eclipse.actions.xml.AddAnnotationConfigAction"
                label="Add Annotation Configuration"
                menubarPath="menu2/bean"/>
          <action
-               class="code_generate.popup.actions.AddContextScanAction"
+               class="com.ydpp.eclipse.actions.xml.AddContextScanAction"
                icon="icons/ico.gif"
-               id="code-generate.AddContextScanAction"
+               id="com.ydpp.eclipse.actions.xml.AddContextScanAction"
                label="Add context:component-scan"
                menubarPath="menu2/bean"/>
          <action
-               class="code_generate.popup.actions.AddMessageSourceAction"
+               class="com.ydpp.eclipse.actions.xml.AddMessageSourceAction"
                icon="icons/ico.gif"
-               id="code-generate.AddMessageSourceAction"
+               id="com.ydpp.eclipse.actions.xml.AddMessageSourceAction"
                label="Add MessageSource"
                menubarPath="menu2/bean"/>
          <action
-               class="code_generate.popup.actions.AddSpringMvcConfigAction"
+               class="com.ydpp.eclipse.actions.xml.AddSpringMvcConfigAction"
                icon="icons/ico.gif"
-               id="code-generate.AddSpringMvcConfigAction"
+               id="com.ydpp.eclipse.actions.xml.AddSpringMvcConfigAction"
                label="Add spring mvc configuration"
                menubarPath="menu2/mvc"
                tooltip="will declare DispatcherServlet in web.xml"/>
          <action
-               class="code_generate.popup.actions.AddTilesViewAction"
+               class="com.ydpp.eclipse.actions.xml.AddTilesViewAction"
                icon="icons/ico.gif"
-               id="code-generate.AddTilesViewAction"
+               id="com.ydpp.eclipse.actions.xml.AddTilesViewAction"
                label="Add Tiles2 View"
                menubarPath="menu2/mvc"/>
          <action
-               class="code_generate.popup.actions.AddFreemarkerViewAction"
+               class="com.ydpp.eclipse.actions.xml.AddFreemarkerViewAction"
                icon="icons/ico.gif"
-               id="code-generate.AddFreemarkerViewAction"
+               id="com.ydpp.eclipse.actions.xml.AddFreemarkerViewAction"
                label="Add Freemarker View"
                menubarPath="menu2/mvc"/>
          <action
-               class="code_generate.popup.actions.AddJspViewAction"
+               class="com.ydpp.eclipse.actions.xml.AddJspViewAction"
                icon="icons/ico.gif"
-               id="code-generate.AddJspViewAction"
+               id="com.ydpp.eclipse.actions.xml.AddJspViewAction"
                label="Add Jsp View"
                menubarPath="menu2/mvc"/>
          <action
-               class="code_generate.popup.actions.AddDataSourceAction"
+               class="com.ydpp.eclipse.actions.xml.AddDataSourceAction"
                icon="icons/ico.gif"
-               id="code-generate.AddDataSourceAction"
+               id="com.ydpp.eclipse.actions.xml.AddDataSourceAction"
                label="Add DataSource"
                menubarPath="menu2/bean"/>
          <action
-               class="code_generate.popup.actions.AddJdbcTemplateAction"
+               class="com.ydpp.eclipse.actions.xml.AddJdbcTemplateAction"
                icon="icons/ico.gif"
-               id="code-generate.AddJdbcTemplateAction"
+               id="com.ydpp.eclipse.actions.xml.AddJdbcTemplateAction"
                label="Add JdbcTemplate"
                menubarPath="menu2/bean"/>
          <action
-               class="code_generate.popup.actions.AddDataSourceTransactionAction"
+               class="com.ydpp.eclipse.actions.xml.AddDataSourceTransactionAction"
                icon="icons/ico.gif"
-               id="code-generate.AddDataSourceTransactionAction"
+               id="com.ydpp.eclipse.actions.xml.AddDataSourceTransactionAction"
                label="Add DataSource Transaction Manager"
                menubarPath="menu2/bean"/>
          <action
-               class="code_generate.popup.actions.AddBeansNamespaceAcion"
+               class="com.ydpp.eclipse.actions.xml.AddBeansNamespaceAcion"
                icon="icons/ico.gif"
-               id="code-generate.AddBeansNamespaceAction"
+               id="com.ydpp.eclipse.actions.xml.AddBeansNamespaceAction"
                label="Add beans namespace"
                menubarPath="menu2/namespace"/>
          <action
-               class="code_generate.popup.actions.AddTxNamespaceAction"
+               class="com.ydpp.eclipse.actions.xml.AddTxNamespaceAction"
                icon="icons/ico.gif"
-               id="code-generate.AddTxNamespaceAction"
+               id="com.ydpp.eclipse.actions.xml.AddTxNamespaceAction"
                label="Add tx namesapce"
                menubarPath="menu2/namespace"/>
          <action
-               class="code_generate.popup.actions.AddAopNamespaceAction"
+               class="com.ydpp.eclipse.actions.xml.AddAopNamespaceAction"
                icon="icons/ico.gif"
-               id="code-generate.AddAopNamespaceAction"
+               id="com.ydpp.eclipse.actions.xml.AddAopNamespaceAction"
                label="Add aop namesapce"
                menubarPath="menu2/namespace"/>
          <action
-               class="code_generate.popup.actions.AddContextNamespaceAction"
+               class="com.ydpp.eclipse.actions.xml.AddContextNamespaceAction"
                icon="icons/ico.gif"
-               id="code-generate.AddContextNamespaceAction"
+               id="com.ydpp.eclipse.actions.xml.AddContextNamespaceAction"
                label="Add context namesapce"
                menubarPath="menu2/namespace"/>
          <action
-               class="code_generate.popup.actions.AddAllNamespaceAction"
+               class="com.ydpp.eclipse.actions.xml.AddAllNamespaceAction"
                icon="icons/ico.gif"
-               id="code-generate.AddAllNamespaceAction"
+               id="com.ydpp.eclipse.actions.xml.AddAllNamespaceAction"
                label="Add all namespace"
                menubarPath="menu2/namespace"
                tooltip="will declare spring all namespace"/>
@@ -171,24 +171,14 @@
          point="org.eclipse.ui.preferencePages">
       <page
             class="code_generate.preferences.CodePreferencePage"
-            id="code_generate.preferences.CodePreferencePage"
+            id="com.ydpp.eclipse.preferences.CodePreferencePage"
             name="Code generate">
       </page>
    </extension>
-   <!--
-   <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            class="code_generate.preferences.ConfigPage"
-            id="code_generate.preferences.ConfigPage"
-            name="Code generate config">
-      </page>
-   </extension>
-   -->
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
-            class="code_generate.preferences.PreferenceInitializer">
+            class="com.ydpp.eclipse.preferences.PreferenceInitializer">
       </initializer>
    </extension>
 
