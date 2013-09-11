@@ -1,3 +1,7 @@
+<import>
+flexjson.JSONDeserializer,flexjson.JSONSerializer,java.util.ArrayList,java.util.Collection,java.util.List
+</import>
+<content>
 // TODO toJson methods
 public String toJson() {
     return new JSONSerializer().exclude("*.class").serialize(this);
@@ -22,3 +26,4 @@ public String toJson(String... fields) {
 public static String toJsonArray(Collection<${class}> collection, String... fields) {
     return new JSONSerializer().include(fields).exclude("*").serialize(collection);
 }
+</content>

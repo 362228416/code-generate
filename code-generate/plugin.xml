@@ -15,7 +15,117 @@
             <separator
                   name="generate">
             </separator>
+            <separator name="hibernate"/>
+            <separator name="jpa"/>
+            <separator name="myibatis"/>
+            <separator name="struts"/>
+            <separator name="spring"/>
+            <separator name="method"/>
          </menu>
+		 <!-- hibernate -->               
+		 <action
+               class="com.ydpp.eclipse.actions.classes.CommonClassGenerator"
+               icon="icons/ico.gif"
+               id="hibernate-dao"
+               label="Hibernate DAO"
+               menubarPath="menu1/hibernate"/>
+         <!-- jpa -->      
+		 <action
+               class="com.ydpp.eclipse.actions.classes.CommonClassGenerator"
+               icon="icons/ico.gif"
+               id="jpa-dao"
+               label="JPA Repository"
+               menubarPath="menu1/jpa"/>
+         <!-- myibatis -->
+		 <action
+               class="com.ydpp.eclipse.actions.classes.CommonClassGenerator"
+               icon="icons/ico.gif"
+               id="myibatis-dao"
+               label="Myibatis Mapper"
+               menubarPath="menu1/myibatis"/>
+		 <action
+               class="com.ydpp.eclipse.actions.classes.CommonClassGenerator"
+               icon="icons/ico.gif"
+               id="myibatis-test"
+               label="Myibatis TestCase"
+               menubarPath="menu1/myibatis"/>
+         <!-- struts -->               
+		 <action
+               class="com.ydpp.eclipse.actions.classes.struts.ActionGenerator"
+               icon="icons/ico.gif"
+               id="com.ydpp.eclipse.actions.classes.struts.ActionGenerator"
+               label="Struts2 Action"
+               menubarPath="menu1/struts"/>
+		 <action
+               class="com.ydpp.eclipse.actions.classes.struts.ActionRestGenerator"
+               icon="icons/ico.gif"
+               id="com.ydpp.eclipse.actions.classes.struts.ActionRestGenerator"
+               label="Struts2 Rest Action"
+               menubarPath="menu1/struts"/>
+		<action
+               class="com.ydpp.eclipse.actions.classes.struts.ActionRestGenerator"
+               icon="icons/ico.gif"
+               id="com.ydpp.eclipse.actions.classes.struts.ActionRestGenerator"
+               label="Struts2 Action TestCase"
+               menubarPath="menu1/struts"/>               
+         <!-- spring -->               
+		 <action
+               class="com.ydpp.eclipse.actions.classes.CommonClassGenerator"
+               icon="icons/ico.gif"
+               id="spring-hibernate-service"
+               label="Spring Service with hibernate"
+               menubarPath="menu1/spring"/>
+		 <action
+               class="com.ydpp.eclipse.actions.classes.CommonClassGenerator"
+               icon="icons/ico.gif"
+               id="spring-jpa-service"
+               label="Spring Service with jpa"
+               menubarPath="menu1/spring"/>
+		<action
+               class="com.ydpp.eclipse.actions.classes.CommonClassGenerator"
+               icon="icons/ico.gif"
+               id="spring-myibatis-service"
+               label="Spring Service with myibatis"
+               menubarPath="menu1/spring"/>
+		 <action
+               class="com.ydpp.eclipse.actions.classes.CommonClassGenerator"
+               icon="icons/ico.gif"
+               id="spring-service-test"
+               label="Spring Service TestCase"
+               menubarPath="menu1/spring"/>                
+		 <action
+               class="com.ydpp.eclipse.actions.classes.CommonClassGenerator"
+               icon="icons/ico.gif"
+               id="springmvc-controller"
+               label="Spring Mvc Controller"
+               menubarPath="menu1/spring"/>
+		 <action
+               class="com.ydpp.eclipse.actions.classes.CommonClassGenerator"
+               icon="icons/ico.gif"
+               id="springmvc-test"
+               label="Spring Mvc Controller TestCase"
+               menubarPath="menu1/spring"/>
+		 <!-- method -->
+		 <action
+               class="com.ydpp.eclipse.actions.method.CommonMethodGenerator"
+               icon="icons/ico.gif"
+               id="toJson"
+               label="toJson Method"
+               menubarPath="menu1/method"/>
+         <action
+               class="com.ydpp.eclipse.actions.method.CommonMethodGenerator"
+               icon="icons/ico.gif"
+               id="springmvc-json"
+               label="Springmvc json Method"
+               menubarPath="menu1/method"/>      
+		 <action
+               class="com.ydpp.eclipse.actions.method.CommonMethodGenerator"
+               icon="icons/ico.gif"
+               id="springmvc-rest"
+               label="Springmvc rest Method"
+               menubarPath="menu1/method"/>
+		                
+		 <!-- old 
          <action
                label="Genarate Repository"
                icon="icons/ico.gif"
@@ -65,6 +175,7 @@
                id="com.ydpp.eclipse.actions.classes.GeneratePageAction"
                label="Genarate Page"
                menubarPath="menu1/generate"/>
+		 -->
          <menu
                id="menu2"
                label="Spring Bean Configuration"

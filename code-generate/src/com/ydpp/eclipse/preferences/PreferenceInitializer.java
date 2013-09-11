@@ -3,10 +3,22 @@ package com.ydpp.eclipse.preferences;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.security.ProtectionDomain;
+import java.util.Enumeration;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
+import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 
@@ -38,8 +50,8 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 	 * 加载模板资源保存至Eclipse Store 
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	void init() throws Exception {
-		IPreferenceStore store = CodeGeneratePlugin.getDefault().getPreferenceStore();
 		// old version template
 		setDefault("template", "repository;repositoryImpl;service;serviceImpl;controller;toJson;");
 		setDefault("textArea", "");
@@ -48,17 +60,18 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		loadResourceAndStore("repositoryImpl");
 		loadResourceAndStore("service");
 		loadResourceAndStore("serviceImpl");
-		loadResourceAndStore("toJson", "methods/toJson.vm");
+//		loadResourceAndStore("toJson", "methods/toJson.vm");
 		
 		// load config
 		Properties prop = new Properties();
 		prop.load(getResourceAsStream("resources/config.properties"));
 		Set<Object> keySet = prop.keySet();
 		for (Object key : keySet) {
-			store.setDefault(key.toString(), prop.get(key).toString());
+			setDefault(key.toString(), prop.get(key).toString());
 		}
 		
 		// load template
+		/* 弃用，改成自动扫描所有文件
 		loadResourceAndStoreFromClasses("hibernate-dao");
 		loadResourceAndStoreFromClasses("hibernate-dao-impl");
 		loadResourceAndStoreFromClasses("jpa-dao");
@@ -69,8 +82,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		loadResourceAndStoreFromClasses("spring-service");
 		loadResourceAndStoreFromClasses("spring-service-impl");
 		loadResourceAndStoreFromClasses("spring-service-test");
-		loadResourceAndStoreFromClasses("springmvc-json");
-		loadResourceAndStoreFromClasses("springmvc-rest");
+		loadResourceAndStoreFromClasses("springmvc-controller");
 		loadResourceAndStoreFromClasses("struts-action");
 		loadResourceAndStoreFromClasses("struts-action-test");
 		loadResourceAndStoreFromClasses("struts-rest");
@@ -86,6 +98,29 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		loadResourceAndStoreFromPages("extjs-update");
 		
 		loadResourceAndStoreFromMethods("toJson");
+		loadResourceAndStoreFromMethods("springmvc-json");
+		loadResourceAndStoreFromMethods("springmvc-rest");
+		*/
+		
+		// 加载模板文件
+		String templateFile = getContent("resources/templates.xml");
+		Document tDoc = DocumentHelper.parseText(templateFile);
+		Element root = tDoc.getRootElement();
+		List<Element> elements = root.elements("class");
+		for (Element e : elements) {
+			loadResourceAndStoreFromClasses(e.getText());
+		}
+		elements = root.elements("method");
+		for (Element e : elements) {
+			loadResourceAndStoreFromMethods(e.getText());
+		}
+		elements = root.elements("page");
+		for (Element e : elements) {
+			loadResourceAndStoreFromPages(e.getText());
+		}
+		
+		
+		
 	}
 	
 	
@@ -141,4 +176,8 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		return Thread.currentThread().getContextClassLoader().getResourceAsStream(resource);
 	}
 
+	
+	
+	
+	
 }

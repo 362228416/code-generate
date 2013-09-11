@@ -96,6 +96,21 @@ public class PluginUtils {
 		return types;
 	}
 	
+	public static SourceType getSourceType(CompilationUnit file) {
+		try {
+			CompilationUnitElementInfo info = (CompilationUnitElementInfo) file.getElementInfo();
+			IJavaElement[] es = info.getChildren();
+			for (int i = 0; i < es.length;i++) {
+				if (es[i] instanceof SourceType) {
+					return (SourceType) es[i];
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public static CompilationUnit getCompilationUnit(Object obj) {
 		List<CompilationUnit> list = getCompilationUnits(obj);
 		if (list.isEmpty()) {
@@ -146,6 +161,7 @@ public class PluginUtils {
 			}
 //			System.out.println(pk.getParent().getParent().getPath().toString());
 			IProject project = getProject(obj);
+			
 			// ant 跟 maven 目录
 			path = pk == null ? "src/" : pk.getParent().getParent().getPath().toString().replace("/"+ project.getName() + "/", "");
 //			IFolder folder = project.getFolder(path.replace("/"+ project.getName(), ""));
@@ -239,6 +255,11 @@ public class PluginUtils {
 		} else if (obj instanceof Openable) {
 			Openable dir = (Openable) obj;
 			project = dir.getJavaProject().getProject();
+		} else if (obj instanceof ObjectPluginAction) {
+			ObjectPluginAction opa = (ObjectPluginAction) obj;
+			StructuredSelection selection = (StructuredSelection)opa.getSelection();
+			project = getProject(selection.getFirstElement());	 
+
 		}
 		return project;
 	}

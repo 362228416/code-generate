@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<class>hibernate-dao</class>
+	<class>hibernate-dao-impl</class>
+	<class>jpa-dao</class>
+	<class>jpa-dao-impl</class>
+	<class>junit-test</class>
+	<class>myibatis-dao</class>
+	<class>spring-dao-test</class>
+	<class>spring-service</class>
+	<class>spring-service-impl</class>
+	<class>spring-service-test</class>
+	<class>springmvc-controller</class>
+	<class>struts-action</class>
+	<class>struts-action-test</class>
+	<class>struts-rest</class>
+	<class>spring--myibatis-service</class>
+	<class>spring-hibernate-service-impl</class>
+	<class>spring-hibernate-service</class>
+	<class>spring-jpa-service-impl</class>
+	<class>spring-jpa-service</class>
+	<class>spring-myibatis-service-impl</class>
+	<method>toJson</method>
+	<method>springmvc-json</method>
+	<method>springmvc-rest</method>
+	<page>extjs-controller</page>
+	<page>extjs-create</page>
+	<page>extjs-layout</page>
+	<page>extjs-list</page>
+	<page>extjs-menu</page>
+	<page>extjs-model</page>
+	<page>extjs-show</page>
+	<page>extjs-store</page>
+	<page>extjs-update</page>
+</config>
