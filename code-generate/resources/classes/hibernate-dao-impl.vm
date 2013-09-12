@@ -1,5 +1,5 @@
 package ${target};
 
-public class ${class}${suffix} implements ${class}DAO{
+public class ${class} implements ${domain}DAO{
 	
 }

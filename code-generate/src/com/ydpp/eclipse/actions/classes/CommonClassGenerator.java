@@ -24,11 +24,10 @@ public class CommonClassGenerator extends SimpleClassGenerateor {
 	@Override
 	protected void run(IAction action, String packageName) throws Exception {
 		String id = action.getId();
-		System.out.println(id);
-		final String suffix = "-suffix";
+		final String name = "-name";
 		for (String key : PreferenceInitializer.STORE_KEYS) {
-			if (key.startsWith(id) && key.endsWith(suffix)) {
-				generate(action, key.replace(suffix, ""), packageName, key);
+			if (key.startsWith(id) && key.endsWith(name)) {
+				generate(action, key.replace(name, ""), packageName, key);
 			}
 		}
 	}

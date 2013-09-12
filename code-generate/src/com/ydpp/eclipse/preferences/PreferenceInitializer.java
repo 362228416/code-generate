@@ -3,24 +3,15 @@ package com.ydpp.eclipse.preferences;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.security.ProtectionDomain;
-import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
-import org.eclipse.jface.preference.IPreferenceStore;
 
 import com.ydpp.eclipse.CodeGeneratePlugin;
 
@@ -118,7 +109,10 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		for (Element e : elements) {
 			loadResourceAndStoreFromPages(e.getText());
 		}
-		
+		elements = root.elements("xml");
+		for (Element e : elements) {
+			loadResourceAndStoreFromXmls(e.getText());
+		}
 		
 		
 	}
@@ -135,6 +129,10 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 	
 	void loadResourceAndStoreFromMethods(String name) {
 		loadResourceAndStore(name, "methods/" + name + ".vm");
+	}
+	
+	void loadResourceAndStoreFromXmls(String name) {
+		loadResourceAndStore(name, "xmls/" + name + ".vm");
 	}
 	
 	void loadResourceAndStore(String name) {
@@ -167,6 +165,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 			}
 			out.close();
 		} catch (IOException e) {
+			System.out.println(template + " not found!");
 			e.printStackTrace();
 		}
 		return content;

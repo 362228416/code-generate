@@ -1,5 +1,0 @@
-package ${target};
-
-public interface ${class}${suffix} {
-	
-}

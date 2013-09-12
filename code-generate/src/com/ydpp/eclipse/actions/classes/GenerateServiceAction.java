@@ -31,8 +31,8 @@ public class GenerateServiceAction extends IObjectActionDelegateAdapter {
 		// OK
 		if (dlg.open() == 0) {
 			String packageName = dlg.getValue();
-			GeneratorUtils.generate(action, store.getString("service"), packageName, "Service");
-			GeneratorUtils.generate(action, store.getString("serviceImpl"), packageName, "ServiceImpl");
+			GeneratorUtils.generate(action, getString("service"), packageName, "Service");
+			GeneratorUtils.generate(action, getString("serviceImpl"), packageName, "ServiceImpl");
 		}
 		
 	}

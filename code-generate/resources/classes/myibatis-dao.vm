@@ -1,5 +1,5 @@
 package ${target};
 
-public interface ${class}${suffix} {
+public interface ${class} {
 	
 }

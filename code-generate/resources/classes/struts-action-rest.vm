@@ -12,11 +12,11 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 @ParentPackage("rest-default")
-public class ${class}Controller extends ActionSupport implements ModelDriven<Object>{
+public class ${class} extends ActionSupport implements ModelDriven<Object>{
 
 	private long id;
-	private Collection<${class}> list;
-	private ${class} model;
+	private Collection<${domain}> list;
+	private ${domain} model;
 	
 	public HttpHeaders index() {
 		return new DefaultHttpHeaders("index").disableCaching();

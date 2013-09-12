@@ -21,6 +21,8 @@
             <separator name="struts"/>
             <separator name="spring"/>
             <separator name="method"/>
+            <separator name="file"/>
+            <separator name="extjs"/>
          </menu>
 		 <!-- hibernate -->               
 		 <action
@@ -49,23 +51,29 @@
                id="myibatis-test"
                label="Myibatis TestCase"
                menubarPath="menu1/myibatis"/>
+		 <action
+               class="com.ydpp.eclipse.actions.file.CommonFileGenerator"
+               icon="icons/ico.gif"
+               id="myibatis-mapper"
+               label="Myibatis mapper xml"
+               menubarPath="menu1/myibatis"/>               
          <!-- struts -->               
 		 <action
-               class="com.ydpp.eclipse.actions.classes.struts.ActionGenerator"
+               class="com.ydpp.eclipse.actions.classes.CommonClassGenerator"
                icon="icons/ico.gif"
-               id="com.ydpp.eclipse.actions.classes.struts.ActionGenerator"
+               id="struts-action-default"
                label="Struts2 Action"
                menubarPath="menu1/struts"/>
 		 <action
-               class="com.ydpp.eclipse.actions.classes.struts.ActionRestGenerator"
+               class="com.ydpp.eclipse.actions.classes.CommonClassGenerator"
                icon="icons/ico.gif"
-               id="com.ydpp.eclipse.actions.classes.struts.ActionRestGenerator"
+               id="struts-action-rest"
                label="Struts2 Rest Action"
                menubarPath="menu1/struts"/>
 		<action
-               class="com.ydpp.eclipse.actions.classes.struts.ActionRestGenerator"
+               class="com.ydpp.eclipse.actions.classes.CommonClassGenerator"
                icon="icons/ico.gif"
-               id="com.ydpp.eclipse.actions.classes.struts.ActionRestGenerator"
+               id="struts-action-test"
                label="Struts2 Action TestCase"
                menubarPath="menu1/struts"/>               
          <!-- spring -->               
@@ -124,7 +132,15 @@
                id="springmvc-rest"
                label="Springmvc rest Method"
                menubarPath="menu1/method"/>
-		                
+         <!-- file -->
+         <!-- extjs -->      
+		 <action
+               class="com.ydpp.eclipse.actions.file.CommonFileGenerator"
+               icon="icons/ico.gif"
+               id="extjs-crud"
+               label="extjs4 crud"
+               menubarPath="menu1/extjs"/>
+                              
 		 <!-- old 
          <action
                label="Genarate Repository"

@@ -2,7 +2,7 @@ package ${target};
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class ${class}Action extends ActionSupport {
+public class ${class} extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {

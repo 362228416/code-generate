@@ -30,7 +30,7 @@ public class GenerateControllerAction extends IObjectActionDelegateAdapter {
 		// OK
 		if (dlg.open() == 0) {
 			String packageName = dlg.getValue();
-			GeneratorUtils.generate(action, store.getString("controller"), packageName, "Controller");
+			GeneratorUtils.generate(action, getString("controller"), packageName, "Controller");
 		}
 		
 		

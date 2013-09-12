@@ -16,8 +16,20 @@ public class ClassInfo {
 	private String suffix;
 	private String path;
 	private String simpleName;
-//	private Set<Field>
+	private String domain;
 	
+	public String getDomain() {
+		return domain;
+	}
+
+	public void setDomain(String domain) {
+		this.domain = domain;
+	}
+
+	public void setSimpleName(String simpleName) {
+		this.simpleName = simpleName;
+	}
+
 	public String getPath() {
 		return path;
 	}
@@ -30,12 +42,14 @@ public class ClassInfo {
 		this.suffix = suffix == null ? "" : suffix;
 		this.packageName = info.getParent().getParent().getElementName();
 		this.className = info.getElementName().replace(".java", "");
+		this.domain = info.getElementName().replace(".java", "");
 	}
 	
 	public ClassInfo(SourceType info, String suffix, String path) {
 		this.suffix = suffix == null ? "" : suffix;
 		this.packageName = info.getParent().getParent().getElementName();
 		this.className = info.getElementName().replace(".java", "");
+		this.domain = info.getElementName().replace(".java", "");
 		this.path = path;
 		
 		String first = String.valueOf(className.charAt(0));

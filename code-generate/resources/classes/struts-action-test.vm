@@ -1,0 +1,23 @@
+package ${target};
+
+import org.junit.Before;
+import org.junit.Test;
+import static junit.framework.Assert.*;
+
+public class ${class} {
+
+	${domain} ${simpleName};
+	
+	@Before
+	public void setUp() throws Exception {
+		${simpleName} = new ${domain}();
+	}
+
+    #foreach($method in $methods)
+@Test
+    public void test${method}() throws Exception {
+    	${simpleName}.${method}();
+    }
+    #end
+
+}

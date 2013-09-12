@@ -37,7 +37,7 @@ public abstract class SimpleClassGenerateor extends
 	}
 	
 	protected void generate(IAction action, String key, String packageName, String suffix) throws Exception {
-		GeneratorUtils.generate(action, getString(key), packageName, getString(suffix));
+		GeneratorUtils.generate(action, getString(key), packageName, suffix);
 	}
 	
 	protected abstract void run(IAction action, String packageName) throws Exception;

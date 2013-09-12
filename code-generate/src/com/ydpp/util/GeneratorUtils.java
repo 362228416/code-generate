@@ -1,6 +1,5 @@
 package com.ydpp.util;
 
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -11,12 +10,13 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.IField;
 import org.eclipse.jdt.core.IMethod;
-import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.internal.core.CompilationUnit;
 import org.eclipse.jdt.internal.core.SourceType;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.internal.PluginAction;
+
+import com.ydpp.eclipse.config.CodeConfig;
 
 /**
  * 生成器辅助类
@@ -98,7 +98,7 @@ public class GeneratorUtils {
 //			info.setSuffix(suffix);
 			
 			IProject project = PluginUtils.getProject(file);
-			String classFile = info.getPath() + "/" + info.getClassName() + suffix;
+			String classFile = info.getPath() + "/" + info.getClassName();
 			IFile ifile = PluginUtils.createJavaFile(project, classFile);
 			
 //			map.put("info", info);
@@ -111,6 +111,14 @@ public class GeneratorUtils {
 			Generator.generate(template, map, ifile);
 		}
 	}
+	
+//	
+//	public static void generateFile(IAction action, String content, String dir, String fileName) {
+//		
+//		
+//	}
+	
+	
 	
 	/**
 	 * <p>
@@ -126,6 +134,7 @@ public class GeneratorUtils {
 		ClassInfo info = PluginUtils.getClassInfo(obj);
 		info.setTargetPackage(packageName);
 		info.setSuffix(suffix);
+		info.setClassName(CodeConfig.getMessage(suffix, info.getClassName()));
 		
 		
 		// 类字段与方法
@@ -158,7 +167,8 @@ public class GeneratorUtils {
 		map.put("info", info);
 		map.put("simpleName", info.getSimpleName());
 		map.put("class", info.getClassName());
-		map.put("fullName", info.getPackageName() + "." + info.getClassName());
+		map.put("domain", info.getDomain());
+		map.put("fullName", info.getPackageName() + "." + info.getDomain());
 		map.put("path", info.getPath());
 		map.put("suffix", info.getSuffix());
 		map.put("package", info.getPackageName());

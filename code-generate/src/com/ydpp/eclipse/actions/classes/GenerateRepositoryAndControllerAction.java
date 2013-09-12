@@ -16,9 +16,9 @@ public class GenerateRepositoryAndControllerAction  extends IObjectActionDelegat
 	@Override
 	public void execute (IAction action) throws Exception {
 		
-		GeneratorUtils.generate(action, store.getString("repository"), "repository", "Repository");
-		GeneratorUtils.generate(action, store.getString("repositoryImpl"), "repository", "RepositoryImpl");
-		GeneratorUtils.generate(action, store.getString("controller"), "web", "Controller");
+		GeneratorUtils.generate(action, getString("repository"), "repository", "Repository");
+		GeneratorUtils.generate(action, getString("repositoryImpl"), "repository", "RepositoryImpl");
+		GeneratorUtils.generate(action, getString("controller"), "web", "Controller");
 		
 		
 	}

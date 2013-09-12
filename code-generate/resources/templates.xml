@@ -11,14 +11,15 @@
 	<class>spring-service-impl</class>
 	<class>spring-service-test</class>
 	<class>springmvc-controller</class>
-	<class>struts-action</class>
+	<class>springmvc-test</class>
+	<class>struts-action-default</class>
 	<class>struts-action-test</class>
-	<class>struts-rest</class>
-	<class>spring--myibatis-service</class>
-	<class>spring-hibernate-service-impl</class>
+	<class>struts-action-rest</class>
 	<class>spring-hibernate-service</class>
-	<class>spring-jpa-service-impl</class>
+	<class>spring-hibernate-service-impl</class>
 	<class>spring-jpa-service</class>
+	<class>spring-jpa-service-impl</class>
+	<class>spring-myibatis-service</class>
 	<class>spring-myibatis-service-impl</class>
 	<method>toJson</method>
 	<method>springmvc-json</method>
@@ -32,4 +33,5 @@
 	<page>extjs-show</page>
 	<page>extjs-store</page>
 	<page>extjs-update</page>
+	<xml>myibatis-mapper</xml>
 </config>

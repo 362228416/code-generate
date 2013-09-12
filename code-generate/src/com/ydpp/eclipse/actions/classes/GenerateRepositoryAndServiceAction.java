@@ -16,10 +16,10 @@ public class GenerateRepositoryAndServiceAction extends IObjectActionDelegateAda
 	@Override
 	public void execute (IAction action) throws Exception {
 
-		GeneratorUtils.generate(action, store.getString("repository"), "repository", "Repository");
-		GeneratorUtils.generate(action, store.getString("repositoryImpl"), "repository", "RepositoryImpl");
-		GeneratorUtils.generate(action, store.getString("service"), "service", "Service");
-		GeneratorUtils.generate(action, store.getString("serviceImpl"), "service", "ServiceImpl");
+		GeneratorUtils.generate(action, getString("repository"), "repository", "Repository");
+		GeneratorUtils.generate(action, getString("repositoryImpl"), "repository", "RepositoryImpl");
+		GeneratorUtils.generate(action, getString("service"), "service", "Service");
+		GeneratorUtils.generate(action, getString("serviceImpl"), "service", "ServiceImpl");
 		
 		
 		

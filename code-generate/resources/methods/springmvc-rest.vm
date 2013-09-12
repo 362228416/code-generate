@@ -1,0 +1,34 @@
+<import>
+org.springframework.ui.Model,org.springframework.web.bind.annotation.PathVariable,org.springframework.web.bind.annotation.RequestMapping,org.springframework.web.bind.annotation.RequestMethod
+</import>
+<content>
+@RequestMapping
+public String list(Model model) {
+	return "blog/list";
+}
+
+@RequestMapping("/{id}")
+public String show(@PathVariable long id, Model model) {
+	return "blog/show";
+}
+
+@RequestMapping(params = "form")
+public String createForm(Model model) {
+	return "blog/form";
+}
+
+@RequestMapping(method = RequestMethod.POST)
+public String create(Model model) {
+	return "blog/view";
+}
+
+@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+public String update(@PathVariable long id, Model model) {
+	return "blog/view";
+}
+
+@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+public String delete(@PathVariable long id) {
+	return "redirect:blogs";
+}
+</content>

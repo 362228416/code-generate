@@ -23,7 +23,7 @@ import com.ydpp.eclipse.preferences.PreferenceInitializer;
  */
 public class ExportDialog extends Dialog {
 
-	private DirectoryFieldEditor dirEditor;
+	protected DirectoryFieldEditor dirEditor;
 
 	public ExportDialog(Shell parentShell) {
 		super(parentShell);
@@ -32,7 +32,7 @@ public class ExportDialog extends Dialog {
 	@Override
 	protected void okPressed() {
 		
-		String fileName = dirEditor.getStringValue() + "/config.xml";
+		String fileName = getStringValue() + "/config.xml";
 		IPreferenceStore store = CodeGeneratePlugin.getDefault().getPreferenceStore();
 		Document doc = DocumentHelper.createDocument();
 		Element root = doc.addElement("config");
@@ -50,6 +50,10 @@ public class ExportDialog extends Dialog {
 		} 
 		
 		super.okPressed();
+	}
+	
+	public String getStringValue() {
+		return dirEditor.getStringValue();
 	}
 	
 	@Override

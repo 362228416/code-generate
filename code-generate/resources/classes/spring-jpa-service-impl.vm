@@ -1,5 +1,5 @@
 package ${target};
 
-public class ${class}${suffix} implements ${class}Service{
+public class ${class} implements ${domain}Service{
 	
 }

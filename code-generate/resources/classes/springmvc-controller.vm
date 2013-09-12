@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/${simpleName}s")
-public class ${class}${suffix} {
+public class ${class} {
 	
 	@RequestMapping
 	public String list(Model model) {

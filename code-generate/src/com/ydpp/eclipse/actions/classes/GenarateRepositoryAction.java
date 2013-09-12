@@ -32,8 +32,8 @@ public class GenarateRepositoryAction extends IObjectActionDelegateAdapter {
 		// OK
 		if (dlg.open() == 0) {
 			String packageName = dlg.getValue();
-			GeneratorUtils.generate(action, store.getString("repository"), packageName, "Repository");
-			GeneratorUtils.generate(action, store.getString("repositoryImpl"), packageName, "RepositoryImpl");
+			GeneratorUtils.generate(action, getString("repository"), packageName, "Repository");
+			GeneratorUtils.generate(action, getString("repositoryImpl"), packageName, "RepositoryImpl");
 		}
 		
 		

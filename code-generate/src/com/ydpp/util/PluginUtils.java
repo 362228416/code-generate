@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.internal.resources.Project;
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -295,7 +296,9 @@ public class PluginUtils {
 
 	public static IFile createFile(IProject project, String filename) throws Exception {
 		IFile file = project.getFile(filename);
-		file.create(null, true, null);
+		if (!file.exists()) {
+			file.create(null, true, null);
+		}
 		return	file;
 	}
 	
@@ -309,6 +312,26 @@ public class PluginUtils {
 	public static IFolder createFolder(IProject project, String foldername) throws Exception {
 		IFolder folder = project.getFolder(foldername);
 		return folder;
+	}
+
+	/**
+	 * 获取当前选中元素所在的目录
+	 * @param action
+	 * @return
+	 */
+	public static IContainer getContainer(Object action) {
+		IContainer container = null;
+		if (action instanceof ObjectPluginAction) {
+			ObjectPluginAction obj = (ObjectPluginAction) action;
+			StructuredSelection select = (StructuredSelection) obj.getSelection();
+			CompilationUnit file = (CompilationUnit) select.getFirstElement();
+			IProject project = getProject(action);
+			container = project.getFolder(file.getParent().getPath());
+			
+		} else {
+			container = getProject(action);
+		}
+		return container;
 	}
 	
 }

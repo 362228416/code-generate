@@ -1,12 +1,12 @@
 package com.ydpp.eclipse.actions;
 
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
-import com.ydpp.eclipse.CodeGeneratePlugin;
+import com.ydpp.eclipse.config.CodeConfig;
 
 /**
  * 
@@ -37,15 +37,26 @@ public class IObjectActionDelegateAdapter implements IObjectActionDelegate {
 	}
 	
 	public String getString(String key) {
-		return store.getString(key);
+		return CodeConfig.getString(key);
 	}
 	
 	public String getDefaultString(String key) {
-		return store.getDefaultString(key);
+		return CodeConfig.getDefaultString(key);
+	}
+	
+	public String getMessage(String key, Object... args) {
+		return CodeConfig.getMessage(key, args);
 	}
 	
 	protected IWorkbenchPart workbenchPart;
 	protected ISelection selection;
-	protected IPreferenceStore store = CodeGeneratePlugin.getDefault().getPreferenceStore();
+	
+	public Shell getShell() {
+		return workbenchPart.getSite().getShell();
+	}
+	
+	public String getSuffix(String key) {
+		return "";
+	}
 
 }
