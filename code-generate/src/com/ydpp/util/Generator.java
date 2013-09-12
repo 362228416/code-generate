@@ -1,20 +1,28 @@
 package com.ydpp.util;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Map;
 
-import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
+//import org.apache.velocity.Template;
+//import org.apache.velocity.VelocityContext;
+//import org.apache.velocity.app.VelocityEngine;
+//import org.apache.velocity.context.Context;
 import org.eclipse.core.internal.resources.File;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
+
+import freemarker.cache.StringTemplateLoader;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 
 /**
  * 代码生成器
@@ -24,14 +32,16 @@ import org.eclipse.core.resources.IProject;
 @SuppressWarnings("restriction")
 public class Generator {
 	
-	public static final VelocityEngine engine;
+//	public static final VelocityEngine engine;
+	public static final Configuration cfg;
 	
 	static {
 //		Properties prop = new Properties();
 //		prop.put("classpath.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
 //		prop.put("classpath.resource.loader.class", Generator.class.getClassLoader().getClass().getName());
 //		engine = new VelocityEngine(prop);
-		engine = new VelocityEngine();
+//		engine = new VelocityEngine();
+		cfg = new Configuration();
 	}
 	
 	public static final void generate(Template template, IFile ifile) throws Exception {
@@ -48,8 +58,12 @@ public class Generator {
 		
 		StringWriter writer = new StringWriter();
 		
-		
-		engine.evaluate(context, writer, "", new StringReader(template));
+		// velocity
+//		engine.evaluate(context, writer, "", new StringReader(template));
+
+		// freemarker
+		Template ftl = new Template("template", new StringReader(template), cfg);
+		ftl.process(context, writer);
 		
 		if (ifile.exists()) {
 			ifile.setContents(new ByteArrayInputStream(writer.toString().getBytes()), true, true, null);
@@ -116,7 +130,17 @@ public class Generator {
 	}
 	
 	public static final void generate(Template template, Context context, Writer writer) {
-		template.merge(context, writer);
+		// velocity
+		//template.merge(context, writer);
+		try {
+			template.process(context, writer);
+		} catch (TemplateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static final String getContent(Template template, Map<String, Object> map) {
@@ -137,7 +161,9 @@ public class Generator {
 	}
 	
 	public static final void generate(String file, Context context, Writer writer) {
-		generate(engine.getTemplate(file), context, writer);
+//		generate(engine.getTemplate(file), context, writer);
+		
+		
 	}
 	
 	public static final String getContent(String file, Map<String, Object> map) {
@@ -151,7 +177,12 @@ public class Generator {
 			
 			// 不读取文件，改成直接读取内容了
 			
-			engine.evaluate(new VelocityContext(map), writer, "", new StringReader(file));
+			// velocity
+//			engine.evaluate(new VelocityContext(map), writer, "", new StringReader(file));
+			
+			// freemarker
+			Template ftl = new Template("template", new StringReader(file), cfg);
+			ftl.process(map, writer);
 			
 			
 		} catch (Exception e) {

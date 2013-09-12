@@ -18,4 +18,5 @@ Bundle-ClassPath: .,
  lib/commons-collections-3.2.1.jar,
  lib/velocity-1.7.jar,
  lib/dom4j-1.6.1.jar,
- lib/commons-io-2.2.jar
+ lib/commons-io-2.2.jar,
+ lib/freemarker-2.3.19.jar
