@@ -145,7 +145,7 @@ public class CodeConfig {
 		CodeGeneratePlugin.getDefault().getPreferenceStore().setDefault(name, value);
 	}
 	
-	static String getContent(String template) {
+	public static String getContent(String template) {
 		InputStream in = ResourceUtil.getResourceAsStream(template);
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		String content = null;

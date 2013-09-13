@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.eclipse.core.internal.resources.Project;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -297,7 +298,7 @@ public class PluginUtils {
 	public static IFile createFile(IProject project, String filename) throws Exception {
 		IFile file = project.getFile(filename);
 		if (!file.exists()) {
-			file.create(null, true, null);
+			file.create(IOUtils.toInputStream(""), true, null);
 		}
 		return	file;
 	}

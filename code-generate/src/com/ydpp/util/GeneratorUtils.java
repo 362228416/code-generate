@@ -91,22 +91,44 @@ public class GeneratorUtils {
 			Map<String, Object> map = new HashMap<String, Object>();
 			ClassInfo info = addVariable(map, file, packageName, suffix);
 			
-//			ClassInfo info = PluginUtils.getClassInfo(file);
-			
-//			info.setPackageName(packageName);
-//			info.setTargetPackage(packageName);
-//			info.setSuffix(suffix);
-			
 			IProject project = PluginUtils.getProject(file);
 			String classFile = info.getPath() + "/" + info.getClassName();
 			IFile ifile = PluginUtils.createJavaFile(project, classFile);
 			
-//			map.put("info", info);
-//			addVariable(map, info);
+			String domain, dao, service, domainPkg, daoPkg, servicePkg;
+			domain = dao = service = domainPkg = daoPkg = servicePkg = null;
 			
+//			String id = action.getId();
+			if (suffix.contains("dao") && !suffix.contains("spring")) {
+				domain = info.getDomain();
+				domainPkg = info.getPackageName();
+				if (suffix.contains("impl")) {
+					
+				} else {
+					dao = info.getClassName();
+					daoPkg = info.getTargetPackage();
+				}
+			}
+			if (suffix.contains("spring") && suffix.contains("service")) {
+				domain = info.getDomain();
+				domainPkg = info.getPackageName();
+				if (suffix.contains("impl")) {
+					
+				} else {
+					service = info.getClassName();
+					servicePkg = info.getTargetPackage();
+				}
+			}
 			
-			
-			// 添加
+			// update and find history
+			CodeHistoryManager.putHistory(action, domain, dao, service, domainPkg, daoPkg, servicePkg);
+			History histry = CodeHistoryManager.getHistry(action, domain, dao, service);
+			map.put("domain", histry.domain);
+			map.put("dao", histry.dao);
+			map.put("service", histry.service);
+			map.put("domainPkg", histry.domainPkg);
+			map.put("daoPkg", histry.daoPkg);
+			map.put("servicePkg", histry.servicePkg);
 			
 			Generator.generate(template, map, ifile);
 		}
