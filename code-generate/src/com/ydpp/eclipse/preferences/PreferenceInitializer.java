@@ -51,7 +51,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		loadResourceAndStore("repositoryImpl");
 		loadResourceAndStore("service");
 		loadResourceAndStore("serviceImpl");
-//		loadResourceAndStore("toJson", "methods/toJson.vm");
+//		loadResourceAndStore("toJson", "methods/toJson.ftl");
 		
 		// load config
 		Properties prop = new Properties();
@@ -120,23 +120,23 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 	
 	// 加载资源，并保存至store
 	void loadResourceAndStoreFromClasses(String name) {
-		loadResourceAndStore(name, "classes/" + name + ".vm");
+		loadResourceAndStore(name, "classes/" + name + ".ftl");
 	}
 	
 	void loadResourceAndStoreFromPages(String name) {
-		loadResourceAndStore(name, "pages/" + name + ".vm");
+		loadResourceAndStore(name, "pages/" + name + ".ftl");
 	}
 	
 	void loadResourceAndStoreFromMethods(String name) {
-		loadResourceAndStore(name, "methods/" + name + ".vm");
+		loadResourceAndStore(name, "methods/" + name + ".ftl");
 	}
 	
 	void loadResourceAndStoreFromXmls(String name) {
-		loadResourceAndStore(name, "xmls/" + name + ".vm");
+		loadResourceAndStore(name, "xmls/" + name + ".ftl");
 	}
 	
 	void loadResourceAndStore(String name) {
-		loadResourceAndStore(name, name + ".vm");
+		loadResourceAndStore(name, name + ".ftl");
 	}
 	
 	void loadResourceAndStore(String name, String resource) {

@@ -8,8 +8,8 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Map;
 
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.context.Context;
+//import org.apache.velocity.VelocityContext;
+//import org.apache.velocity.context.Context;
 //import org.apache.velocity.Template;
 //import org.apache.velocity.VelocityContext;
 //import org.apache.velocity.app.VelocityEngine;
@@ -19,7 +19,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 
-import freemarker.cache.StringTemplateLoader;
+//import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -44,12 +44,12 @@ public class Generator {
 		cfg = new Configuration();
 	}
 	
-	public static final void generate(Template template, IFile ifile) throws Exception {
-		Context context = null;
-		generate(template, context, ifile);
-	}
+//	public static final void generate(Template template, IFile ifile) throws Exception {
+//		Context context = null;
+//		generate(template, context, ifile);
+//	}
 	
-	public static final void generate(String template, Context context, IFile ifile) throws Exception {
+	public static final void generate(String template, Object context, IFile ifile) throws Exception {
 //		generate(engine.getTemplate(template), context, ifile);
 //		URL url = Activator.getDefault().getBundle().getEntry(template);
 //		InputStreamReader reader = new InputStreamReader(url.openStream());
@@ -98,56 +98,45 @@ public class Generator {
 		}
 	}
 	
-	public static final void generate(String template, Map<String,Object> map, IFile ifile) throws Exception {
-		generate(template, new VelocityContext(map), ifile);
-	}
+//	public static final void generate(String template, Map<String,Object> map, IFile ifile) throws Exception {
+//		generate(template, map, ifile);
+//	}
+//	
+//	public static final void generate(Template template, Map<String, Object> context, IFile ifile) throws Exception {
+//		InputStream in = new ByteArrayInputStream(getContent(template, context).getBytes());
+//		ifile.setContents(in, true, true, null);
+//	}
 	
-	public static final void generate(Template template, Context context, IFile ifile) throws Exception {
-		InputStream in = new ByteArrayInputStream(getContent(template, context).getBytes());
-		ifile.setContents(in, true, true, null);
-	}
-	
-	public static final void generate(Template template, Map<String, Object> map, IFile ifile) throws Exception {
-		generate(template, new VelocityContext(map), ifile);
-	}
+//	public static final void generate(Template template, Map<String, Object> map, IFile ifile) throws Exception {
+//		generate(template, map, ifile);
+//	}
 	
 	public static final void generate(Template template, IFile ifile, Map<String, Object> map) throws Exception {
 		InputStream in = new ByteArrayInputStream(getContent(template, map).getBytes());
 		ifile.setContents(in, true, true, null);
 	}
 	
-	public static final void generate(Template template, IFile ifile, Context context) throws Exception {
-		InputStream in = new ByteArrayInputStream(getContent(template, context).getBytes());
-		ifile.setContents(in, true, true, null);
-	}
-	
-	public static final void generate(String file, Writer writer) {
-		generate(file, null, writer);
-	}
+//	public static final void generate(String file, Writer writer) {
+//		generate(file, null, writer);
+//	}
 	
 	public static final String getContent(String file) {
 		return getContent(file, null);
 	}
 	
-	public static final void generate(Template template, Context context, Writer writer) {
+	public static final void generate(Template template, Map<String, Object> context, Writer writer) {
 		// velocity
 		//template.merge(context, writer);
 		try {
 			template.process(context, writer);
 		} catch (TemplateException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public static final String getContent(Template template, Map<String, Object> map) {
-		return getContent(template, new VelocityContext(map));
-	}
-	
-	public static final String getContent(Template template, Context context) {
+	public static final String getContent(Template template, Map<String, Object> context) {
 		StringWriter writer = new StringWriter();
 		generate(template, context, writer);
 		return writer.toString();
@@ -160,11 +149,11 @@ public class Generator {
 		return writer.toString();
 	}
 	
-	public static final void generate(String file, Context context, Writer writer) {
-//		generate(engine.getTemplate(file), context, writer);
-		
-		
-	}
+//	public static final void generate(String file, Context context, Writer writer) {
+////		generate(engine.getTemplate(file), context, writer);
+//		
+//		
+//	}
 	
 	public static final String getContent(String file, Map<String, Object> map) {
 //		return getContent(engine.getTemplate(file), map);

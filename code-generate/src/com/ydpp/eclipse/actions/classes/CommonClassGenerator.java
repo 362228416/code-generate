@@ -11,7 +11,7 @@ import com.ydpp.eclipse.preferences.PreferenceInitializer;
  * 通用的Class生成器
  * 通过获取被点击菜单项的ID，自动搜索本插件Store所有以该该ID开头的key
  * 按照约定key所对应的模板文件应该位于项目的reources/classes目录，名称
- * 命名为：ID.vm，如：struts-action.vm
+ * 命名为：ID.ftl，如：struts-action.ftl
  * 控制器会根据resources/config.properties配置文件的找到该ID所对应的后缀，以及默认值包名称
  * 后缀规则如下：ID = 后缀，默认值包名称规则：ID-package = 默认值包名称
  * 如:  struts-action-suffix = Action

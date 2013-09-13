@@ -13,11 +13,11 @@ public class ${class} {
 		${simpleName} = new ${domain}();
 	}
 
-    #foreach($method in $methods)
-@Test
-    public void test${method}() throws Exception {
-    	${simpleName}.${method}();
-    }
-    #end
+	<#list methods as method>
+	@Test
+	public void test${method?cap_first}() throws Exception {
+		${simpleName}.${method}();
+	}
+	</#list>
 
 }

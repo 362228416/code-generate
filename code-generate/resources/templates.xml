@@ -6,6 +6,7 @@
 	<class>jpa-dao-impl</class>
 	<class>junit-test</class>
 	<class>myibatis-dao</class>
+	<class>myibatis-test</class>
 	<class>spring-dao-test</class>
 	<class>spring-service</class>
 	<class>spring-service-impl</class>

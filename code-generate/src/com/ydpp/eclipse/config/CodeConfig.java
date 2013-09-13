@@ -113,23 +113,23 @@ public class CodeConfig {
 	
 	// load resource and save to store
 	static void loadResourceAndStoreFromClasses(String name) {
-		loadResourceAndStore(name, "classes/" + name + ".vm");
+		loadResourceAndStore(name, "classes/" + name + ".ftl");
 	}
 	
 	static void loadResourceAndStoreFromPages(String name) {
-		loadResourceAndStore(name, "pages/" + name + ".vm");
+		loadResourceAndStore(name, "pages/" + name + ".ftl");
 	}
 	
 	static void loadResourceAndStoreFromMethods(String name) {
-		loadResourceAndStore(name, "methods/" + name + ".vm");
+		loadResourceAndStore(name, "methods/" + name + ".ftl");
 	}
 	
 	static void loadResourceAndStoreFromXmls(String name) {
-		loadResourceAndStore(name, "xmls/" + name + ".vm");
+		loadResourceAndStore(name, "xmls/" + name + ".ftl");
 	}
 	
 	static void loadResourceAndStore(String name) {
-		loadResourceAndStore(name, name + ".vm");
+		loadResourceAndStore(name, name + ".ftl");
 	}
 	
 	static void loadResourceAndStore(String name, String resource) {
