@@ -120,6 +120,13 @@ public class GeneratorUtils {
 				}
 			}
 			
+			if (domain == null) {
+				dao = info.getDomain();
+//				domain = 
+			}
+			
+//			if (suffix.contains("test") && !suffix.contains(""))
+			
 			// update and find history
 			CodeHistoryManager.putHistory(action, domain, dao, service, domainPkg, daoPkg, servicePkg);
 			History histry = CodeHistoryManager.getHistry(action, domain, dao, service);

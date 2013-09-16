@@ -81,14 +81,26 @@ public class CodeHistoryManager {
 		
 		// find domain 
 		if (domain == null) {
+			/*
 			List<Element> list = root.elements("history");
-			System.out.println(list.size());
 			for (Element e : list) {
 				if (e.elementText("dao").equals(dao) || e.elementText("service").equals(service)) {
 					domain = e.attributeValue("id");
 					break;
 				}
 			}
+			*/
+			
+			List<Element> list = root.elements("history");
+			for (Element e : list) {
+				String keys = e.attributeValue("keys");
+				if (domain != null && keys.contains(domain) || dao != null && keys.contains(dao) || service != null && keys.contains(service)) {
+					domain = e.attributeValue("id");
+					break;
+				}
+				
+			}
+			
 		}
 		
 		// update elements
@@ -106,6 +118,16 @@ public class CodeHistoryManager {
 				eDaoP.setText(daoPkg == null ? eDaoP.getText() : daoPkg);
 				Element eSp = e.element("servicePkg");
 				eSp.setText(servicePkg == null ? eSp.getText() : servicePkg);
+				
+				String keys = e.attributeValue("keys");
+				if (dao != null && !keys.contains(dao)) {
+					keys += "," + dao;
+				}
+				if (service != null && !keys.contains(service)) {
+					keys += "," + service;
+				}
+				e.attributeValue("keys", keys);
+				
 				exists = true;
 				break;
 			}
@@ -113,7 +135,7 @@ public class CodeHistoryManager {
 		}
 		
 		// add history
-		if (!exists) {
+		if (!exists && domain != null) {
 			Element history = root.addElement("history");
 			history.addAttribute("id", domain);
 			history.addElement("dao").setText(dao == null ? "" : dao);
@@ -121,6 +143,9 @@ public class CodeHistoryManager {
 			history.addElement("domainPkg").setText(domainPkg == null ? "" : domainPkg);
 			history.addElement("daoPkg").setText(daoPkg == null ? "" : daoPkg);
 			history.addElement("servicePkg").setText(servicePkg == null ? "" : servicePkg);
+			StringBuffer keys = new StringBuffer();
+			keys.append(domain).append(dao == null ? "" : "," + dao).append(service == null ? "" : "," + service);
+			history.addAttribute("keys", keys.toString());
 		}
 		
 		
@@ -144,6 +169,18 @@ public class CodeHistoryManager {
 		// find domain 
 		List<Element> list = root.elements("history");
 		for (Element e : list) {
+			String keys = e.attributeValue("keys");
+//			if (keys.contains(domain) || keys.contains(dao) || keys.contains(service)) {
+			if (domain != null && keys.contains(domain) || dao != null && keys.contains(dao) || service != null && keys.contains(service)) {
+				history.domain = e.attributeValue("id");
+				history.dao = e.elementText("dao");
+				history.service = e.elementText("service");
+				history.domainPkg = e.elementText("domainPkg");
+				history.daoPkg = e.elementText("daoPkg");
+				history.servicePkg = e.elementText("servicePkg");
+				break;
+			}
+			/*
 			if (e.attributeValue("id").equals(domain) || e.elementText("dao").equals(dao) || e.elementText("service").equals(service)) {
 				history.domain = e.attributeValue("id");
 				history.dao = e.elementText("dao");
@@ -153,6 +190,7 @@ public class CodeHistoryManager {
 				history.servicePkg = e.elementText("servicePkg");
 				break;
 			}
+			*/
 		}
 		
 		return history;
@@ -162,12 +200,9 @@ public class CodeHistoryManager {
 	static Document getHistoryFile(IAction action) throws Exception {
 		IFile file = PluginUtils.createFile(PluginUtils.getProject(action), ".histories");
 		Document doc = null;
-		System.out.println(file.exists());
-//		file.getc
 		
 		InputStream in = file.getContents();
 		String content = IOUtils.toString(in);
-		System.out.println(content.length());
 		if (content.length() == 0) {
 			doc = DocumentHelper.createDocument();
 			doc.addElement("histories");

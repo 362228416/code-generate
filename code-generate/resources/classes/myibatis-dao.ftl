@@ -1,20 +1,24 @@
 package ${target};
 
-import ${fullName};
-import java.util.List;
+import java.io.Serializable;
+import java.util.Collection;
+
+import ${domainPkg}.${domain};
 
 public interface ${class} {
 
-	public void save(${domain} ${simpleName});
+	public void save(${domain} ${domain?uncap_first});
 	
 	public void delete(${domain} ${domain?uncap_first});
 	
 	public void update(${domain} ${domain?uncap_first});
 	
-	public ${domain} find(long id);
+	public ${domain} find(Serializable id);
 	
-	public List<${domain}> findAll();
+	public Collection<${domain}> findAll();
 	
-	public List<${domain}> find${domain}s(int first, int max);
+	public Collection<${domain}> find(int firstResult, int maxResults);
+	
+	public long count();
 	
 }
