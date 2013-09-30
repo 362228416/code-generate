@@ -32,7 +32,7 @@ public class ${class} extends BaseAction {
 	private int size;
 	private String status;
 	private String distCode;
-	private int errorCode;		// 错误代码，0正常，1验证错误，2服务端错误
+	private int errorCode;		// ${"错误代码 : 0正常, 1验证错误, 2服务端错误"?string}
 	
 	@Autowired(required = false)
 	${service} ${sService};
