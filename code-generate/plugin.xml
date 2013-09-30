@@ -140,6 +140,13 @@
                id="extjs-crud"
                label="extjs4 crud"
                menubarPath="menu1/extjs"/>
+         <!-- page -->      
+		 <action
+               class="com.ydpp.eclipse.actions.file.CommonFileGenerator"
+               icon="icons/ico.gif"
+               id="model-"
+               label="page crud"
+               menubarPath="menu1/page"/>      
                               
 		 <!-- old 
          <action

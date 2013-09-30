@@ -28,13 +28,19 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 	 * @see org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer#initializeDefaultPreferences()
 	 */
 	public void initializeDefaultPreferences() {
+		
+	}
+	
+	public static Set<String> STORE_KEYS;
+	
+	static {
 		try {
+			STORE_KEYS = new HashSet<String>();
 			init();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	
 	/**
@@ -42,7 +48,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 	 * @throws Exception
 	 */
 	@SuppressWarnings("unchecked")
-	void init() throws Exception {
+	static void init() throws Exception {
 		// old version template
 		setDefault("template", "repository;repositoryImpl;service;serviceImpl;controller;toJson;");
 		setDefault("textArea", "");
@@ -119,38 +125,36 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 	
 	
 	// 加载资源，并保存至store
-	void loadResourceAndStoreFromClasses(String name) {
+	static void loadResourceAndStoreFromClasses(String name) {
 		loadResourceAndStore(name, "classes/" + name + ".ftl");
 	}
 	
-	void loadResourceAndStoreFromPages(String name) {
+	static void loadResourceAndStoreFromPages(String name) {
 		loadResourceAndStore(name, "pages/" + name + ".ftl");
 	}
 	
-	void loadResourceAndStoreFromMethods(String name) {
+	static void loadResourceAndStoreFromMethods(String name) {
 		loadResourceAndStore(name, "methods/" + name + ".ftl");
 	}
 	
-	void loadResourceAndStoreFromXmls(String name) {
+	static void loadResourceAndStoreFromXmls(String name) {
 		loadResourceAndStore(name, "xmls/" + name + ".ftl");
 	}
 	
-	void loadResourceAndStore(String name) {
+	static void loadResourceAndStore(String name) {
 		loadResourceAndStore(name, name + ".ftl");
 	}
 	
-	void loadResourceAndStore(String name, String resource) {
+	static void loadResourceAndStore(String name, String resource) {
 		setDefault(name, getContent("resources/" + resource));
 	}
 	
-	void setDefault(String name, String value) {
+	static void setDefault(String name, String value) {
 		STORE_KEYS.add(name);
 		CodeGeneratePlugin.getDefault().getPreferenceStore().setDefault(name, value);
 	}
 	
-	public static Set<String> STORE_KEYS = new HashSet<String>();
-	
-	String getContent(String template) {
+	static String getContent(String template) {
 		InputStream in = getResourceAsStream(template);
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		String content = null;
@@ -171,7 +175,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		return content;
 	}
 	
-	InputStream getResourceAsStream(String resource) {
+	static InputStream getResourceAsStream(String resource) {
 		return Thread.currentThread().getContextClassLoader().getResourceAsStream(resource);
 	}
 

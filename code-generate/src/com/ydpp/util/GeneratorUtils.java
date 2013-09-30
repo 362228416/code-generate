@@ -130,7 +130,7 @@ public class GeneratorUtils {
 			// update and find history
 			CodeHistoryManager.putHistory(action, domain, dao, service, domainPkg, daoPkg, servicePkg);
 			History histry = CodeHistoryManager.getHistry(action, domain, dao, service);
-			map.put("domain", histry.domain);
+			map.put("domain", histry.domain == null ? info.getDomain() : histry.getDomain());
 			map.put("dao", histry.dao);
 			map.put("service", histry.service);
 			map.put("domainPkg", histry.domainPkg);

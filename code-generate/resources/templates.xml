@@ -34,5 +34,13 @@
 	<page>extjs-show</page>
 	<page>extjs-store</page>
 	<page>extjs-update</page>
+	<page>model-create</page>
+	<page>model-delete</page>
+	<page>model-downup</page>
+	<page>model-index</page>
+	<page>model-notFound</page>
+	<page>model-staticize</page>
+	<page>model-update</page>
+	<page>model-view</page>
 	<xml>myibatis-mapper</xml>
 </config>
